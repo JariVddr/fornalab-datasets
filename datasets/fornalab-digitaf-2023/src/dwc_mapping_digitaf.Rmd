@@ -310,7 +310,7 @@ event <-
 
 occurrence <-      # Repeat for different groups, depending on data: plants/animals, counts/presence-absence
   my_data %>% 
-  dplyr::filter(!is.na(`Species (Scientific name)`)) %>% 
+  dplyr::filter(!is.na(Spec)) %>% 
   dplyr::mutate(
     .keep = "none",
     language = data_language,
