@@ -19,6 +19,7 @@ Load libraries:
 
 ```{r message = FALSE}
 library(readxl)
+library(here)
 library(dplyr)
 library(here)
 library(digest)        
@@ -45,19 +46,22 @@ library(EML)
 * Det
 
 ```{r}
-pitfalls <- read.csv("Fieldwork data/Clean data/Obs.Pitfalls.csv") %>% 
+# Define the directory containing the data files
+directory <- here::here("datasets", "fornalab-digitaf-2023", "data")
+
+pitfalls <- read.csv(here::here(directory, "raw", "Obs.Pitfalls.csv")) %>% 
   dplyr::select(Spec, Amount = Number, Loc, Type, LAT = lat, LON = lng, Sampletime = Trapnr, Method, Date = date, Det, Stage, Sex, Family, Order) %>%
   dplyr::mutate(Sampletime = ifelse(Sampletime == 1, "Spring - trap 1", "Spring - trap 2"))
-transects <- read.csv("Fieldwork data/Clean data/Obs.Transects.csv") %>% 
+transects <- read.csv(here::here(directory, "raw", "Obs.Transects.csv")) %>% 
   dplyr::select(Spec, Amount = Number, Loc, Type, LAT = lat, LON = lng, Sampletime, Method, Date = date, Det, Stage, Sex, Family, Order) %>%
   dplyr::mutate(Sampletime = ifelse(Sampletime == 1, "Spring", "Late summer"))
-quadrats <- read.csv("Fieldwork data/Clean data/Obs.Plants.csv") %>% 
+quadrats <- read.csv(here::here(directory, "raw", "Obs.Plants.csv")) %>% 
   dplyr::select(Spec, Amount = Number, Loc, Type, LAT = lat, LON = lng, Method, Date = date, Det, Stage, Sex, Family, Order) %>%
   dplyr::mutate(Sampletime = "Spring")
-audiomoth_birds <- read.csv("Fieldwork data/Clean data/Obs.AudioMoths-birds.csv") %>% 
+audiomoth_birds <- read.csv(here::here(directory, "raw", "Obs.AudioMoths-birds.csv")) %>% 
   dplyr::select(Spec, Loc, Type, LAT = lat, LON = lng, Method, Date = date, Det, Stage, Sex, Family, Order) %>%
   dplyr::mutate(Sampletime = "Spring", Amount = 1)
-audiomoth_bats <- read.csv("Fieldwork data/Clean data/Obs.AudioMoths-bats.csv") %>% 
+audiomoth_bats <- read.csv(here::here(directory, "raw", "Obs.AudioMoths-bats.csv")) %>% 
   dplyr::select(Spec, Loc, Type, LAT = lat, LON = lng, Method, Date = date, Det, Stage, Sex, Family, Order) %>%
   dplyr::mutate(Sampletime = "Spring", Amount = 1)
 ```
