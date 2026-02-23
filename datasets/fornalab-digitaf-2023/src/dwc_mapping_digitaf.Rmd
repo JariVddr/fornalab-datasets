@@ -19,6 +19,7 @@ Load libraries:
 
 ```{r message = FALSE}
 library(readxl)
+library(here)
 library(dplyr)
 library(here)
 library(digest)        
@@ -45,6 +46,7 @@ library(EML)
 * Det
 
 ```{r}
+<<<<<<< HEAD:datasets/fornalab-digitaf-2023/src/0) GBIF-formatting.Rmd
 pitfalls <- read.csv("Fieldwork data/Clean data/Obs.Pitfalls.csv") %>% 
   dplyr::select(Spec, Amount = Number, Loc, Type, LAT = lat, LON = lng, Sampletime = Trapnr, Method, Date = date, Det, Stage, Sex, Family, Order, occurrenceID) %>%
   dplyr::mutate(Sampletime = ifelse(Sampletime == 1, "Spring - trap 1", "Spring - trap 2"))
@@ -59,6 +61,25 @@ audiomoth_birds <- read.csv("Fieldwork data/Clean data/Obs.AudioMoths-birds.csv"
   dplyr::mutate(Sampletime = "Spring", Amount = 1)
 audiomoth_bats <- read.csv("Fieldwork data/Clean data/Obs.AudioMoths-bats.csv") %>% 
   dplyr::select(Spec, Loc, Type, LAT = lat, LON = lng, Method, Date = date, Det, Stage, Sex, Family, Order, occurrenceID) %>%
+=======
+# Define the directory containing the data files
+directory <- here::here("datasets", "fornalab-digitaf-2023", "data")
+
+pitfalls <- read.csv(here::here(directory, "raw", "Obs.Pitfalls.csv")) %>% 
+  dplyr::select(Spec, Amount = Number, Loc, Type, LAT = lat, LON = lng, Sampletime = Trapnr, Method, Date = date, Det, Stage, Sex, Family, Order) %>%
+  dplyr::mutate(Sampletime = ifelse(Sampletime == 1, "Spring - trap 1", "Spring - trap 2"))
+transects <- read.csv(here::here(directory, "raw", "Obs.Transects.csv")) %>% 
+  dplyr::select(Spec, Amount = Number, Loc, Type, LAT = lat, LON = lng, Sampletime, Method, Date = date, Det, Stage, Sex, Family, Order) %>%
+  dplyr::mutate(Sampletime = ifelse(Sampletime == 1, "Spring", "Late summer"))
+quadrats <- read.csv(here::here(directory, "raw", "Obs.Plants.csv")) %>% 
+  dplyr::select(Spec, Amount = Number, Loc, Type, LAT = lat, LON = lng, Method, Date = date, Det, Stage, Sex, Family, Order) %>%
+  dplyr::mutate(Sampletime = "Spring")
+audiomoth_birds <- read.csv(here::here(directory, "raw", "Obs.AudioMoths-birds.csv")) %>% 
+  dplyr::select(Spec, Loc, Type, LAT = lat, LON = lng, Method, Date = date, Det, Stage, Sex, Family, Order) %>%
+  dplyr::mutate(Sampletime = "Spring", Amount = 1)
+audiomoth_bats <- read.csv(here::here(directory, "raw", "Obs.AudioMoths-bats.csv")) %>% 
+  dplyr::select(Spec, Loc, Type, LAT = lat, LON = lng, Method, Date = date, Det, Stage, Sex, Family, Order) %>%
+>>>>>>> 533ead019336be624a65d72406976a067c559564:datasets/fornalab-digitaf-2023/src/dwc_mapping_digitaf.Rmd
   dplyr::mutate(Sampletime = "Spring", Amount = 1)
 ```
 
@@ -241,8 +262,8 @@ creators <- list(   # If info not available: Add: NA_character_
 metadata_provider <- purrr::keep(creators, ~ .x$title %in% c("Jari Vandendriessche"))
 contact <- purrr::keep(creators, ~ .x$title == "Jari Vandendriessche")
 keywords <- c("biodiversity", "hedgerows", "agroforestry", "landscape", "beetles", "spiders", "ants", "lepidoptera", "bees", "wasps", "flies", "plants", "birds", "bats")
-begin_date <-  min(raw_data$Date)
-end_date <- max(raw_data$Date)
+begin_date <-  min(my_data$Date)
+end_date <- max(my_data$Date)
 geographic_description <- "Flemish cereal fields"
 
 ##############################
@@ -314,7 +335,7 @@ event <-
 
 occurrence <-      # Repeat for different groups, depending on data: plants/animals, counts/presence-absence
   my_data %>% 
-  dplyr::filter(!is.na(`Species (Scientific name)`)) %>% 
+  dplyr::filter(!is.na(Spec)) %>% 
   dplyr::mutate(
     .keep = "none",
     language = data_language,
