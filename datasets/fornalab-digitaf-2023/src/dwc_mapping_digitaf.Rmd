@@ -249,12 +249,58 @@ begin_date <-  min(my_data$Date)
 end_date <- max(my_data$Date)
 geographic_description <- "Flemish cereal fields"
 
-##############################
-# How to implement this???
-#############################
-taxonomic_coverage <- data.frame(
-  scientificName = "Lepidoptera",
-  taxonRank = "order"
+taxonomic_coverage <-
+data.frame(
+scientificName = "Plantae",
+taxonRank = "kingdom"
+) |>
+dplyr::add_row(
+scientificName = "Araneae",
+taxonRank = "order"
+) |>
+dplyr::add_row(
+scientificName = "Isopoda",
+taxonRank = "order"
+) |>
+dplyr::add_row(
+scientificName = "Hymenoptera",
+taxonRank = "order"
+) |>
+dplyr::add_row(
+scientificName = "Chiroptera",
+taxonRank = "order"
+) |>
+dplyr::add_row(
+scientificName = "Aves",
+taxonRank = "class"
+) |>
+dplyr::add_row(
+scientificName = "Lepidoptera",
+taxonRank = "order"
+) |>
+dplyr::add_row(
+scientificName = "Coleoptera",
+taxonRank = "order"
+) |>
+dplyr::add_row(
+scientificName = "Diptera",
+taxonRank = "order"
+) |>
+dplyr::add_row(
+scientificName = "Opiliones",
+taxonRank = "order"
+) |>
+dplyr::add_row(
+scientificName = "Diplopoda",
+taxonRank = "class"
+) |>
+dplyr::add_row(
+scientificName = "Chilopoda",
+taxonRank = "class"
+) |>
+dplyr::add_row(
+scientificName = "Orthoptera",
+taxonRank = "order"
 )
 
 taxonomic_description <- ""
@@ -281,13 +327,7 @@ How?
 
 27 cereal fields were selected along a gradient of landscape complexity throughout Flanders, each bordered with a hedgerow (tree row). We used the proxy of a tree row for agroforestry since mature agroforestry fields are rare."
 
-##############################
-# How to implement this???
-#############################
-
-logo_digitaf <- paste(here::here(directory), "raw/Logos/DigitAF.png")
-logo_fornalab <- paste(here::here(directory), "raw/Logos/ForNaLab.png")
-logo_ugent <- paste(here::here(directory), "raw/Logos/UGent.png")
+logo<- "https://digitaf.eu/wp-content/uploads/2022/10/logoDigitAF_HR.png"
 ```
 
 # ----------------------------------
