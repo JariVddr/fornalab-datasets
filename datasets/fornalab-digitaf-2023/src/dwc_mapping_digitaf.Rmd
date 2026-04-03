@@ -50,19 +50,24 @@ library(EML)
 directory <- here::here("datasets", "fornalab-digitaf-2023", "data")
 
 pitfalls <- read.csv(here::here(directory, "raw", "Obs.Pitfalls.csv")) %>% 
-  dplyr::select(Spec, Amount = Number, Loc, Type, LAT = lat, LON = lng, Sampletime = Trapnr, Method, Date = date, Det, Stage, Sex, Family, Order, group = Spec_group) %>%
+  dplyr::select(Spec, Amount = Number, Loc, Type, LAT = lat, LON = lng, Sampletime = Trapnr, Method, Date = date, Det, Stage, Sex, Family, Order, 
+                group = Spec_group, occurrenceID) %>%
   dplyr::mutate(Sampletime = ifelse(Sampletime == 1, "Spring - trap 1", "Spring - trap 2"))
 transects <- read.csv(here::here(directory, "raw", "Obs.Transects.csv")) %>% 
-  dplyr::select(Spec, Amount = Number, Loc, Type, LAT = lat, LON = lng, Sampletime, Method, Date = date, Det, Stage, Sex, Family, Order, group = Spec_group) %>%
+  dplyr::select(Spec, Amount = Number, Loc, Type, LAT = lat, LON = lng, Sampletime, Method, Date = date, Det, Stage, Sex, Family, Order, 
+                group = Spec_group, occurrenceID) %>%
   dplyr::mutate(Sampletime = ifelse(Sampletime == 1, "Spring", "Late summer"))
 quadrats <- read.csv(here::here(directory, "raw", "Obs.Plants.csv")) %>% 
-  dplyr::select(Spec, Amount = Number, Loc, Type, LAT = lat, LON = lng, Method, Date = date, Det, Stage, Sex, Family, Order, group = Spec_group) %>%
+  dplyr::select(Spec, Amount = Number, Loc, Type, LAT = lat, LON = lng, Method, Date = date, Det, Stage, Sex, Family, Order, 
+                group = Spec_group, occurrenceID) %>%
   dplyr::mutate(Sampletime = "Spring")
 audiomoth_birds <- read.csv(here::here(directory, "raw", "Obs.AudioMoths-birds.csv")) %>% 
-  dplyr::select(Spec, Loc, Type, LAT = lat, LON = lng, Method, Date = date, Det, Stage, Sex, Family, Order, group = Spec_group) %>%
+  dplyr::select(Spec, Loc, Type, LAT = lat, LON = lng, Method, Date = date, Det, Stage, Sex, Family, Order, 
+                group = Spec_group, occurrenceID) %>%
   dplyr::mutate(Sampletime = "Spring", Amount = 1)
 audiomoth_bats <- read.csv(here::here(directory, "raw", "Obs.AudioMoths-bats.csv")) %>% 
-  dplyr::select(Spec, Loc, Type, LAT = lat, LON = lng, Method, Date = date, Det, Stage, Sex, Family, Order, group = Spec_group) %>%
+  dplyr::select(Spec, Loc, Type, LAT = lat, LON = lng, Method, Date = date, Det, Stage, Sex, Family, Order, 
+                group = Spec_group, occurrenceID) %>%
   dplyr::mutate(Sampletime = "Spring", Amount = 1)
 ```
 
