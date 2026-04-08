@@ -296,58 +296,58 @@ end_date <- max(my_data$Date)
 geographic_description <- "Flemish cereal fields"
 
 taxonomic_coverage <-
-data.frame(
-scientificName = "Plantae",
-taxonRank = "kingdom"
-) |>
-dplyr::add_row(
-scientificName = "Araneae",
-taxonRank = "order"
-) |>
-dplyr::add_row(
-scientificName = "Isopoda",
-taxonRank = "order"
-) |>
-dplyr::add_row(
-scientificName = "Hymenoptera",
-taxonRank = "order"
-) |>
-dplyr::add_row(
-scientificName = "Chiroptera",
-taxonRank = "order"
-) |>
-dplyr::add_row(
-scientificName = "Aves",
-taxonRank = "class"
-) |>
-dplyr::add_row(
-scientificName = "Lepidoptera",
-taxonRank = "order"
-) |>
-dplyr::add_row(
-scientificName = "Coleoptera",
-taxonRank = "order"
-) |>
-dplyr::add_row(
-scientificName = "Diptera",
-taxonRank = "order"
-) |>
-dplyr::add_row(
-scientificName = "Opiliones",
-taxonRank = "order"
-) |>
-dplyr::add_row(
-scientificName = "Diplopoda",
-taxonRank = "class"
-) |>
-dplyr::add_row(
-scientificName = "Chilopoda",
-taxonRank = "class"
-) |>
-dplyr::add_row(
-scientificName = "Orthoptera",
-taxonRank = "order"
-)
+  data.frame(
+    scientificName = "Plantae",
+    taxonRank = "kingdom"
+  ) |>
+  dplyr::add_row(
+    scientificName = "Araneae",
+    taxonRank = "order"
+  ) |>
+  dplyr::add_row(
+    scientificName = "Isopoda",
+    taxonRank = "order"
+  ) |>
+  dplyr::add_row(
+    scientificName = "Hymenoptera",
+    taxonRank = "order"
+  ) |>
+  dplyr::add_row(
+    scientificName = "Chiroptera",
+    taxonRank = "order"
+  ) |>
+  dplyr::add_row(
+    scientificName = "Aves",
+    taxonRank = "class"
+  ) |>
+  dplyr::add_row(
+    scientificName = "Lepidoptera",
+    taxonRank = "order"
+  ) |>
+  dplyr::add_row(
+    scientificName = "Coleoptera",
+    taxonRank = "order"
+  ) |>
+  dplyr::add_row(
+    scientificName = "Diptera",
+    taxonRank = "order"
+  ) |>
+  dplyr::add_row(
+    scientificName = "Opiliones",
+    taxonRank = "order"
+  ) |>
+  dplyr::add_row(
+    scientificName = "Diplopoda",
+    taxonRank = "class"
+  ) |>
+  dplyr::add_row(
+    scientificName = "Chilopoda",
+    taxonRank = "class"
+  ) |>
+  dplyr::add_row(
+    scientificName = "Orthoptera",
+    taxonRank = "order"
+  )
 
 taxonomic_description <- ""
 references <- list(list(NA)) # Add references to articles using the data
