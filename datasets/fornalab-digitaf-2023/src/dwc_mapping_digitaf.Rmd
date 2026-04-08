@@ -273,11 +273,11 @@ creators <- list(   # If info not available: Add: NA_character_
   ),
   list(
     title = "Sanne Govaert",
-    email = "",
+    email = "sanne.govaert@ugent.be",
     organization = "Research Institute for Nature and Forest",
     first_name = "Sanne",
     last_name = "Govaert",
-    orcid = ""
+    orcid = "0000-0002-8939-1305"
   ),
   list(
     title = "Kris Verheyen",
