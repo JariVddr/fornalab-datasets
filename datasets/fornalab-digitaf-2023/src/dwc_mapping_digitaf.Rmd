@@ -1,7 +1,9 @@
 ---
 title: "Darwin Core Mapping"
 subtitle: "Landscape mitigation effects for improvements of biodiversity levels in tree rows next to cereal fields: DIGItal Tools to boost AgroForestry (DigitAF)"
-author: "Jari Vandendendriessche (source: Sanne Govaert)"
+author:
+- "Jari Vandendendriessche"
+- "Sanne Govaert"
 date: "`r Sys.Date()`"
 output: html_document
 ---
