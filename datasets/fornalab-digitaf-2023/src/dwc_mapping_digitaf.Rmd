@@ -424,7 +424,6 @@ occurrence <-
     sex = .data$Sex,
     basisOfRecord = ifelse(.data$group %in% c("birds", "bats"), "MachineObservation", "PreservedSpecimen"),
     basisOfRecord = ifelse(.data$group %in% c("plants", "lepidoptera"), "HumanObservation", basisOfRecord),
-    collectionCode = "DIGITAF",
     occurrenceID = .data$occurrenceID, 
     organismQuantity = .data$Amount, 
     organismQuantityType = ifelse(.data$group == "plants", "percentage cover", "individuals"),
