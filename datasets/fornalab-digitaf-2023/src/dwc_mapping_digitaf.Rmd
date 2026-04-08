@@ -382,7 +382,7 @@ logo<- "https://digitaf.eu/wp-content/uploads/2022/10/logoDigitAF_HR.png"
 
 ```{r dwc transformation}
 event <- 
-  my_data %>% 
+  my_data |> 
   dplyr::mutate(
     .keep = "none",
     type = "Event",
@@ -403,12 +403,12 @@ event <-
     geodeticDatum = "EPSG:4326",
     coordinateUncertaintyInMeters = 5,
     eventRemarks = ""
-  ) %>% 
+  ) |> 
   dplyr::distinct()
 
 occurrence <-      
-  my_data %>% 
-  dplyr::filter(!is.na(Spec)) %>% 
+  my_data |> 
+  dplyr::filter(!is.na(Spec)) |> 
   dplyr::mutate(
     .keep = "none",
     language = data_language,
@@ -461,9 +461,9 @@ is.numeric(occurrence$organismQuantity)
 
 ```{r}
 from_gbif <-
-  occurrence %>%
-  select(scientificName, taxonRank) %>%
-  distinct %>%
+  occurrence |>
+  select(scientificName, taxonRank) |>
+  distinct |>
   mutate(
     lookup = purrr::map2(
       scientificName,
@@ -471,13 +471,13 @@ from_gbif <-
       ~ rgbif::name_backbone(.x, rank = .y, kingdom = kingdom)
     ),
     .keep = "none"
-  ) %>%
-  dplyr::pull(lookup) %>%
+  ) |>
+  dplyr::pull(lookup) |>
   purrr::list_rbind()
 
 ## not matched exactly
 no_exact_match <- unique(occurrence$scientificName)[!unique(occurrence$scientificName) %in% from_gbif$canonicalName]
-from_gbif %>% filter(verbatim_name %in% no_exact_match)
+from_gbif |> filter(verbatim_name %in% no_exact_match)
 ```
 
 # ----------------------------------
