@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eml:eml xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.2" packageId="ca8dfc45-bc8c-4f6a-9075-fef8b6c72aba" system="uuid" xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0 https://eml.ecoinformatics.org/eml-2.2.0/eml.xsd">
+  <dataset>
+    <shortName>DIGITAF_BIODIVERSITY_FLEMISH_TREEROWS</shortName>
+    <title>Landscape mitigation effects for improvements of biodiversity levels in tree rows next to cereal fields</title>
+    <creator>
+      <individualName>
+        <givenName>Jari</givenName>
+        <surName>Vandendriessche</surName>
+      </individualName>
+      <organizationName>Forest &amp; Nature Lab, Ghent University</organizationName>
+      <electronicMailAddress>jari.vandendriessche@ugent.be</electronicMailAddress>
+      <userId directory="https://orcid.org/">0000-0003-3845-6655</userId>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Maxime</givenName>
+        <surName>Eeraerts</surName>
+      </individualName>
+      <organizationName>Forest &amp; Nature Lab, Ghent University</organizationName>
+      <electronicMailAddress>Maxime.eeraerts@ugent.be</electronicMailAddress>
+      <userId directory="https://orcid.org/">0000-0003-2739-9704</userId>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Pieter</givenName>
+        <surName>De Frenne</surName>
+      </individualName>
+      <organizationName>Forest &amp; Nature Lab, Ghent University</organizationName>
+      <electronicMailAddress>pieter.defrenne@ugent.be</electronicMailAddress>
+      <userId directory="https://orcid.org/">0000-0002-8613-0943</userId>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Pallieter</givenName>
+        <surName>De Smedt</surName>
+      </individualName>
+      <organizationName>Forest &amp; Nature Lab, Ghent University</organizationName>
+      <electronicMailAddress>pallieter.desmedt@ugent.be</electronicMailAddress>
+      <userId directory="https://orcid.org/">0000-0002-3073-6751</userId>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Léon</givenName>
+        <surName>Baert</surName>
+      </individualName>
+      <organizationName>Royal Belgian Institute of Natural Sciences</organizationName>
+      <electronicMailAddress>lbaert@naturalsciences.be</electronicMailAddress>
+      <userId directory="https://orcid.org/"/>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Augustijn</givenName>
+        <surName>De Ketelaere</surName>
+      </individualName>
+      <organizationName>Aculea, Natuurpunt</organizationName>
+      <electronicMailAddress>augustijn.de.ketelaere@gmail.com</electronicMailAddress>
+      <userId directory="https://orcid.org/">0009-0007-0260-5483</userId>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Wouter</givenName>
+        <surName>Dekoninck</surName>
+      </individualName>
+      <organizationName>Royal Belgian Institute of Natural Sciences</organizationName>
+      <electronicMailAddress>wdekonick@naturalsciences.be</electronicMailAddress>
+      <userId directory="https://orcid.org/">0000-0002-7065-7310</userId>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Koen</givenName>
+        <surName>Lock</surName>
+      </individualName>
+      <organizationName/>
+      <electronicMailAddress>koen_lock@hotmail.com</electronicMailAddress>
+      <userId directory="https://orcid.org/"/>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Astrid</givenName>
+        <surName>Van den Bossche</surName>
+      </individualName>
+      <organizationName>Forest &amp; Nature Lab, Ghent University</organizationName>
+      <electronicMailAddress>astvdnbo.vandenbossche@ugent.be</electronicMailAddress>
+      <userId directory="https://orcid.org/"/>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Bob</givenName>
+        <surName>Vandendriessche</surName>
+      </individualName>
+      <organizationName>Bat Working Group, Natuurpunt</organizationName>
+      <electronicMailAddress>bob.vandendriessche@rlhp.be</electronicMailAddress>
+      <userId directory="https://orcid.org/">0009-0009-3802-1820</userId>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Johan</givenName>
+        <surName>Van Keer</surName>
+      </individualName>
+      <organizationName>ARABEL</organizationName>
+      <electronicMailAddress>johan.van.keer1@gmail.com</electronicMailAddress>
+      <userId directory="https://orcid.org/"/>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Luc</givenName>
+        <surName>Willems</surName>
+      </individualName>
+      <organizationName>Forest &amp; Nature Lab, Ghent University</organizationName>
+      <electronicMailAddress>luc.willems@ugent.be</electronicMailAddress>
+      <userId directory="https://orcid.org/"/>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Sanne</givenName>
+        <surName>Govaert</surName>
+      </individualName>
+      <organizationName>Research Institute for Nature and Forest</organizationName>
+      <electronicMailAddress>sanne.govaert@ugent.be</electronicMailAddress>
+      <userId directory="https://orcid.org/">0000-0002-8939-1305</userId>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Kris</givenName>
+        <surName>Verheyen</surName>
+      </individualName>
+      <organizationName>Forest &amp; Nature Lab, Ghent University</organizationName>
+      <electronicMailAddress>kris.verheyen@ugent.be</electronicMailAddress>
+      <userId directory="https://orcid.org/">0000-0002-2067-9108</userId>
+    </creator>
+    <metadataProvider>
+      <individualName>
+        <givenName>Jari</givenName>
+        <surName>Vandendriessche</surName>
+      </individualName>
+      <organizationName>Forest &amp; Nature Lab, Ghent University</organizationName>
+      <electronicMailAddress>jari.vandendriessche@ugent.be</electronicMailAddress>
+      <userId directory="https://orcid.org/">0000-0003-3845-6655</userId>
+    </metadataProvider>
+    <abstract>
+      <para>DIGITAF_BIODIVERSITY_FLEMISH_TREEROWS is a sampling event dataset published by Ghent University. It contains information on an exhaustive sampling event in 64 Flemish plots across 27 cereal fields. At each field, a plot was established in a bordering tree row (tree), in a treeless field margin (crtl) and in 10 fields we had the permission to sample in the field (crop). Fields were selected along a gradient of landscape composition across the available Flemish palette of landscapes. The dataset includes information on a biodiversity balance sampled as a snapshot with high taxonomic resolution. Mentioned groups were identified by any of our co-authors (unless otherwise indicated) to high taxonomic resolution (generally species level). Methods applied incorporated (i) 2 pitfall traps (14 days, Ø 9cm, d 11cm, autoantifreeze dilution, June) for beetles (Histeridae, Carabidae, Staphylinidae), spiders, ants, isopods, millipedes, centipedes and harvestmen, (ii) a transect walk (50m, 15', May-June &amp; September) along the plot for lepidoptera, bees, wasps, flies and pollinating beetles, (iii) a vegetation quadrat of 10m² (2x5 or 1x10, depending on margin width, May-June) for plants and (iv) AudioMoth deployment between 05:15 CET-10:00 CET, 19:30-22:00 CET and 22:30-02:00 CET (48h, 1' per 15', 0-96 kHz, May-June) for birds and bats. Audiofiles were processed with BTO acoustic pipeline and the BirdNET analyzer with manual verification afterwards. Bat and bird data are presented in presence-absence (under one date, better resolution data can be requested), plant data in cover percentage and all other data in number of individuals caught. A metadata-file with parcel specifications will be published with the Zenodo-records of this dataset and can be requested through our contacts. With the same records, we will also publish the validated activity-based dataset for bats.</para>
+      <para>We have released this dataset under a Creative Commons waiver. If you have any questions regarding this dataset, don't hesitate to contact us via the contact information provided in the metadata.</para>
+      <para>This sampling took place in the framework of the DIGItal Tools to help AgroForestry (&lt;a href="https://digitaf.eu/"&gt;DigitAF&lt;/a&gt;) project (grant	agreement	no. 101059794), co-funded	by	the	European	Commission and the	European	Research	Agency,	within	the	Horizon	Europe	programme. This dataset was published with technical support provided by the Research Institute for Nature and Forest (INBO). We thank Marc van Kerckvoorde for the intensive identifications of carabids, staphylinids and histerids, Jens D'Haeseleer for the bee identifications and Jef Hendrix for verifying some hoverfly specimens.</para>
+    </abstract>
+    <keywordSet>
+      <keyword>Samplingevent</keyword>
+      <keywordThesaurus>GBIF Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type_2015-07-10.xml</keywordThesaurus>
+    </keywordSet>
+    <keywordSet>
+      <keyword>biodiversity</keyword>
+      <keyword>hedgerows</keyword>
+      <keyword>agroforestry</keyword>
+      <keyword>landscape</keyword>
+      <keyword>beetles</keyword>
+      <keyword>spiders</keyword>
+      <keyword>ants</keyword>
+      <keyword>lepidoptera</keyword>
+      <keyword>bees</keyword>
+      <keyword>wasps</keyword>
+      <keyword>flies</keyword>
+      <keyword>plants</keyword>
+      <keyword>birds</keyword>
+      <keyword>bats</keyword>
+      <keywordThesaurus>n/a</keywordThesaurus>
+    </keywordSet>
+    <intellectualRights>
+      <para>CC0 1.0</para>
+    </intellectualRights>
+    <coverage>
+      <geographicCoverage>
+        <geographicDescription>Flemish cereal fields</geographicDescription>
+        <boundingCoordinates>
+          <westBoundingCoordinate>2.8078</westBoundingCoordinate>
+          <eastBoundingCoordinate>5.0037</eastBoundingCoordinate>
+          <northBoundingCoordinate>51.1135</northBoundingCoordinate>
+          <southBoundingCoordinate>50.7582</southBoundingCoordinate>
+        </boundingCoordinates>
+      </geographicCoverage>
+      <temporalCoverage>
+        <rangeOfDates>
+          <beginDate>
+            <calendarDate>2023-05-18</calendarDate>
+          </beginDate>
+          <endDate>
+            <calendarDate>2023-09-14</calendarDate>
+          </endDate>
+        </rangeOfDates>
+      </temporalCoverage>
+      <taxonomicCoverage>
+        <generalTaxonomicCoverage/>
+        <taxonomicClassification>
+          <taxonRankName>kingdom</taxonRankName>
+          <taxonRankValue>Plantae</taxonRankValue>
+        </taxonomicClassification>
+        <taxonomicClassification>
+          <taxonRankName>order</taxonRankName>
+          <taxonRankValue>Araneae</taxonRankValue>
+        </taxonomicClassification>
+        <taxonomicClassification>
+          <taxonRankName>order</taxonRankName>
+          <taxonRankValue>Isopoda</taxonRankValue>
+        </taxonomicClassification>
+        <taxonomicClassification>
+          <taxonRankName>order</taxonRankName>
+          <taxonRankValue>Hymenoptera</taxonRankValue>
+        </taxonomicClassification>
+        <taxonomicClassification>
+          <taxonRankName>order</taxonRankName>
+          <taxonRankValue>Chiroptera</taxonRankValue>
+        </taxonomicClassification>
+        <taxonomicClassification>
+          <taxonRankName>class</taxonRankName>
+          <taxonRankValue>Aves</taxonRankValue>
+        </taxonomicClassification>
+        <taxonomicClassification>
+          <taxonRankName>order</taxonRankName>
+          <taxonRankValue>Lepidoptera</taxonRankValue>
+        </taxonomicClassification>
+        <taxonomicClassification>
+          <taxonRankName>order</taxonRankName>
+          <taxonRankValue>Coleoptera</taxonRankValue>
+        </taxonomicClassification>
+        <taxonomicClassification>
+          <taxonRankName>order</taxonRankName>
+          <taxonRankValue>Diptera</taxonRankValue>
+        </taxonomicClassification>
+        <taxonomicClassification>
+          <taxonRankName>order</taxonRankName>
+          <taxonRankValue>Opiliones</taxonRankValue>
+        </taxonomicClassification>
+        <taxonomicClassification>
+          <taxonRankName>class</taxonRankName>
+          <taxonRankValue>Diplopoda</taxonRankValue>
+        </taxonomicClassification>
+        <taxonomicClassification>
+          <taxonRankName>class</taxonRankName>
+          <taxonRankValue>Chilopoda</taxonRankValue>
+        </taxonomicClassification>
+        <taxonomicClassification>
+          <taxonRankName>order</taxonRankName>
+          <taxonRankValue>Orthoptera</taxonRankValue>
+        </taxonomicClassification>
+      </taxonomicCoverage>
+    </coverage>
+    <maintenance>
+      <description>
+        <para/>
+      </description>
+      <maintenanceUpdateFrequency>notPlanned</maintenanceUpdateFrequency>
+    </maintenance>
+    <contact>
+      <individualName>
+        <givenName>Jari</givenName>
+        <surName>Vandendriessche</surName>
+      </individualName>
+      <organizationName>Forest &amp; Nature Lab, Ghent University</organizationName>
+      <electronicMailAddress>jari.vandendriessche@ugent.be</electronicMailAddress>
+      <userId directory="https://orcid.org/">0000-0003-3845-6655</userId>
+    </contact>
+    <project>
+      <title>DIGItal Tools to boost AgroForestry (DigitAF)</title>
+      <personnel>
+        <individualName>
+          <givenName>Jari</givenName>
+          <surName>Vandendriessche</surName>
+        </individualName>
+        <organizationName>Forest &amp; Nature Lab, Ghent University</organizationName>
+        <electronicMailAddress>jari.vandendriessche@ugent.be</electronicMailAddress>
+        <userId directory="https://orcid.org/">0000-0003-3845-6655</userId>
+      </personnel>
+      <personnel>
+        <individualName>
+          <givenName>Pieter</givenName>
+          <surName>De Frenne</surName>
+        </individualName>
+        <organizationName>Forest &amp; Nature Lab, Ghent University</organizationName>
+        <electronicMailAddress>pieter.defrenne@ugent.be</electronicMailAddress>
+        <userId directory="https://orcid.org/">0000-0002-8613-0943</userId>
+      </personnel>
+      <personnel>
+        <individualName>
+          <givenName>Kris</givenName>
+          <surName>Verheyen</surName>
+        </individualName>
+        <organizationName>Forest &amp; Nature Lab, Ghent University</organizationName>
+        <electronicMailAddress>kris.verheyen@ugent.be</electronicMailAddress>
+        <userId directory="https://orcid.org/">0000-0002-2067-9108</userId>
+      </personnel>
+      <abstract>
+        <para>Combining trees with crops or livestock on the same land has the potential to mitigate climate change. As a resilient agricultural practice, agroforestry (AF) can sequester carbon, preserve biodiversity and contribute to food security by diversifying agricultural production. The EU-funded DIGITAF project will promote AF systems. Specifically, it will co-develop digital tools tailored to the needs and concerns of AF target groups, including policy actors, practitioners and actors involved in the AF value chain. The project will implement six Living Labs in different countries to ensure an end-user-centred multi-actor approach. Bringing together 25 partners from 20 countries, DIGITAF will cover the entire AF value chain. It will contribute to farm sustainability, climate change mitigation, biodiversity preservation and soil conservation.</para>
+      </abstract>
+      <funding>
+        <para>Grant	agreement	no. 101059794, co-funded	by	the	European	Commission and the	European	Research	Agency,	within	the	Horizon	Europe	programme</para>
+      </funding>
+      <studyAreaDescription>
+        <descriptor citableClassificationSystem="false" name="generic">
+          <descriptorValue>Europe</descriptorValue>
+        </descriptor>
+      </studyAreaDescription>
+      <designDescription>
+        <description>
+          <para>Work package 3: Task 3.3: Co-develop, apply and verify a tool to quantify the biodiversity impact of agroforestry
+
+The goal of WP3 Task3 is twofold:
+- Quantifying biodiversity returns through agroforestry implementation with a digital tool for stakeholders
+- Assembling biodiversity data to validate and incorporate in this tool
+
+Why this research particularly?
+
+Research is lacking on the biodiversity effects of agroforestry systems in temperate Europe, especially in relation to the surrounding landscape context. We try to fill this gap at least partially.
+
+How?
+
+27 cereal fields were selected along a gradient of landscape complexity throughout Flanders, each bordered with a hedgerow (tree row). We used the proxy of a tree row for agroforestry since mature agroforestry fields are rare.</para>
+        </description>
+      </designDescription>
+    </project>
+  </dataset>
+  <additionalMetadata>
+    <metadata>
+      <gbif>
+        <hierarchyLevel>dataset</hierarchyLevel>
+        <resourceLogoUrl>https://digitaf.eu/wp-content/uploads/2022/10/logoDigitAF_HR.png</resourceLogoUrl>
+      </gbif>
+    </metadata>
+  </additionalMetadata>
+</eml:eml>
