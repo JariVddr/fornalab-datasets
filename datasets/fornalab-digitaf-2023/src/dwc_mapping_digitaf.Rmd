@@ -463,7 +463,7 @@ is.numeric(occurrence$organismQuantity)
 from_gbif <-
   occurrence |>
   select(scientificName, taxonRank) |>
-  distinct |>
+  distinct() |>
   mutate(
     lookup = purrr::map2(
       scientificName,
