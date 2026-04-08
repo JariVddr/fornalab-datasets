@@ -459,25 +459,27 @@ is.numeric(occurrence$organismQuantity)
 
 ## Check species names with GBIF backbone
 
-```{r}
-from_gbif <-
-  occurrence |>
-  select(scientificName, taxonRank) |>
-  distinct() |>
-  mutate(
-    lookup = purrr::map2(
-      scientificName,
-      taxonRank,
-      ~ rgbif::name_backbone(.x, rank = .y, kingdom = kingdom)
-    ),
-    .keep = "none"
-  ) |>
-  dplyr::pull(lookup) |>
-  purrr::list_rbind()
+* verbatim = the provided data
 
-## not matched exactly
-no_exact_match <- unique(occurrence$scientificName)[!unique(occurrence$scientificName) %in% from_gbif$canonicalName]
-from_gbif |> filter(verbatim_name %in% no_exact_match)
+
+```{r}
+gbif_check <-
+  occurrence |>
+  select(scientificName, taxonRank, kingdom) |>
+  dplyr::rename(rank = .data$taxonRank) |>
+  distinct() |>
+  rgbif::name_backbone_checklist()
+
+no_exact_match <- 
+  gbif_check |>
+  filter(matchType != "EXACT") |>
+    dplyr::select(
+      "verbatim_name", "scientificName", "matchType", "confidence",
+      "verbatim_rank", "rank",
+      "status", "acceptedUsageKey", "acceptedScientificName"
+    )
+
+no_exact_match
 ```
 
 # ----------------------------------
