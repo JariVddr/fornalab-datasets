@@ -65,7 +65,7 @@ audiomoth_bats_raw <- read.csv(here::here(directory, "raw", "Obs.AudioMoths-bats
 ```{r}
 selected_variables <- c(
   "Spec", "Loc", "Type", "lat", "lng", "Method", "date", "Det", "Stage", "Sex",
-  "Family", "Order", "Spec_group", "Sampletime", "Number"
+  "Family", "Order", "Spec_group", "Sampletime", "Number", "occurrenceID"
 )
   
 pitfalls <-
