@@ -51,21 +51,57 @@ library(EML)
 # Define the directory containing the data files
 directory <- here::here("datasets", "fornalab-digitaf-2023", "data")
 
-pitfalls <- read.csv(here::here(directory, "raw", "Obs.Pitfalls.csv")) %>% 
-  dplyr::select(Spec, Amount = Number, Loc, Type, LAT = lat, LON = lng, Sampletime = Trapnr, Method, Date = date, Det, Stage, Sex, Family, Order, group = Spec_group) %>%
-  dplyr::mutate(Sampletime = ifelse(Sampletime == 1, "Spring - trap 1", "Spring - trap 2"))
-transects <- read.csv(here::here(directory, "raw", "Obs.Transects.csv")) %>% 
-  dplyr::select(Spec, Amount = Number, Loc, Type, LAT = lat, LON = lng, Sampletime, Method, Date = date, Det, Stage, Sex, Family, Order, group = Spec_group) %>%
-  dplyr::mutate(Sampletime = ifelse(Sampletime == 1, "Spring", "Late summer"))
-quadrats <- read.csv(here::here(directory, "raw", "Obs.Plants.csv")) %>% 
-  dplyr::select(Spec, Amount = Number, Loc, Type, LAT = lat, LON = lng, Method, Date = date, Det, Stage, Sex, Family, Order, group = Spec_group) %>%
-  dplyr::mutate(Sampletime = "Spring")
-audiomoth_birds <- read.csv(here::here(directory, "raw", "Obs.AudioMoths-birds.csv")) %>% 
-  dplyr::select(Spec, Loc, Type, LAT = lat, LON = lng, Method, Date = date, Det, Stage, Sex, Family, Order, group = Spec_group) %>%
-  dplyr::mutate(Sampletime = "Spring", Amount = 1)
-audiomoth_bats <- read.csv(here::here(directory, "raw", "Obs.AudioMoths-bats.csv")) %>% 
-  dplyr::select(Spec, Loc, Type, LAT = lat, LON = lng, Method, Date = date, Det, Stage, Sex, Family, Order, group = Spec_group) %>%
-  dplyr::mutate(Sampletime = "Spring", Amount = 1)
+pitfalls_raw <- read.csv(here::here(directory, "raw", "Obs.Pitfalls.csv"))
+transects_raw <- read.csv(here::here(directory, "raw", "Obs.Transects.csv"))
+quadrats_raw <- read.csv(here::here(directory, "raw", "Obs.Plants.csv"))
+audiomoth_birds_raw <- read.csv(here::here(directory, "raw", "Obs.AudioMoths-birds.csv"))
+audiomoth_bats_raw <- read.csv(here::here(directory, "raw", "Obs.AudioMoths-bats.csv"))
+```
+
+# Prepare dataset
+
+## Mutate and select variables
+
+```{r}
+selected_variables <- c(
+  "Spec", "Loc", "Type", "lat", "lng", "Method", "date", "Det", "Stage", "Sex",
+  "Family", "Order", "Spec_group", "Sampletime", "Number"
+)
+  
+pitfalls <-
+  pitfalls_raw |>
+  dplyr::mutate(
+    Sampletime = dplyr::if_else(Trapnr == 1, "Spring - trap 1", "Spring - trap 2")
+  ) |>
+  dplyr::select(selected_variables)
+
+transects <-
+  transects_raw |>
+  dplyr::mutate(
+    Sampletime = dplyr::if_else(Sampletime == 1, "Spring", "Late summer")
+  ) |>
+  dplyr::select(selected_variables)
+
+quadrats <-
+  quadrats_raw |>
+  dplyr::mutate(Sampletime = "Spring") |>
+  dplyr::select(selected_variables)
+
+audiomoth_birds <-
+  audiomoth_birds_raw |>
+  dplyr::mutate(
+    Sampletime = "Spring",
+    Number = 1
+    ) |>
+  dplyr::select(selected_variables)
+
+audiomoth_bats <-
+  audiomoth_bats_raw |>
+  dplyr::mutate(
+    Sampletime = "Spring",
+    Number = 1
+  ) |>
+  dplyr::select(selected_variables)
 ```
 
 # ----------------------------------
@@ -73,14 +109,22 @@ audiomoth_bats <- read.csv(here::here(directory, "raw", "Obs.AudioMoths-bats.csv
 # ----------------------------------
 
 ```{r}
-my_data <- dplyr::bind_rows(pitfalls, transects, quadrats, audiomoth_birds, audiomoth_bats) %>%
-  dplyr::mutate(TAG = paste(Loc, Type, Sampletime, sep = "_")) %>%
+my_data <- dplyr::bind_rows(pitfalls, transects, quadrats, audiomoth_birds, audiomoth_bats) |>
+  dplyr::rename(
+    "Date" = date,
+    "LAT" = lat,
+    "LON" = lng,
+    "group" = Spec_group,
+    "Amount" = Number
+  ) |>
   dplyr::mutate(
+    TAG = paste(Loc, Type, Sampletime, sep = "_"),
     field = toupper(Type), # set in capital letters
     # Use 'event_id' and 'parent_event_id' to create unique event identifiers for plots
     event_id = paste("DIGITAF_BIODIVERSITY_FLEMISH_TREEROWS", "PLOT", Loc, Type, Sampletime, sep = ":"),
     parent_event_id = paste("DIGITAF_BIODIVERSITY_FLEMISH_TREEROWS", "LOCATION", Loc, sep = ":")
-    )
+    ) 
+
 my_data
 ```
 
