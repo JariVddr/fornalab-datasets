@@ -418,20 +418,35 @@ occurrence <-
     datasetID = dataset_id,
     datasetName = title,
     identifiedBy = .data$Det,
-    lifeStage = .data$Stage,
-    lifeStage = ifelse(lifeStage == "Ad", "adult", lifeStage),
-    lifeStage = ifelse(lifeStage == "juv", "juvenile", lifeStage),
+    lifeStage = dplyr::recode_values(
+      .data$Stage,
+      "Ad" ~ "adult",
+      "Juv" ~ "juvenile"
+      ),
     sex = .data$Sex,
-    basisOfRecord = ifelse(.data$group %in% c("birds", "bats"), "MachineObservation", "PreservedSpecimen"),
-    basisOfRecord = ifelse(.data$group %in% c("plants", "lepidoptera"), "HumanObservation", basisOfRecord),
+    basisOfRecord = dplyr::if_else(
+      .data$group %in% c("birds", "bats"),
+      "MachineObservation",
+      dplyr::if_else(
+        .data$group %in% c("plants", "lepidoptera"),
+        "HumanObservation",
+        "PreservedSpecimen"
+      )
+    ),
     occurrenceID = .data$occurrenceID, 
     organismQuantity = .data$Amount, 
-    organismQuantityType = ifelse(.data$group == "plants", "percentage cover", "individuals"),
-    organismQuantityType = ifelse(.data$group %in% c("birds", "bats"), "presence/absence", organismQuantityType),
+    organismQuantityType = dplyr::if_else(
+      .data$group == "plants", "percentage cover", "individuals"
+      ),
+    organismQuantityType = dplyr::if_else(
+      .data$group %in% c("birds", "bats"), 
+      "presence/absence",
+      organismQuantityType
+      ),
     occurrenceStatus = "present",
     eventID = .data$event_id, 
     scientificName = .data$Spec,
-    kingdom = ifelse(.data$group == "plants", "Plantae", "Animalia"), 
+    kingdom = dplyr::if_else(.data$group == "plants", "Plantae", "Animalia"), 
     taxonRank = "species"
   )
 ```
@@ -462,23 +477,27 @@ is.numeric(occurrence$organismQuantity)
 
 
 ```{r}
-gbif_check <-
-  occurrence |>
-  select(scientificName, taxonRank, kingdom) |>
-  dplyr::rename(rank = .data$taxonRank) |>
-  distinct() |>
-  rgbif::name_backbone_checklist()
+do_check <- FALSE
 
-no_exact_match <- 
-  gbif_check |>
-  filter(matchType != "EXACT") |>
-    dplyr::select(
-      "verbatim_name", "scientificName", "matchType", "confidence",
-      "verbatim_rank", "rank",
-      "status", "acceptedUsageKey", "acceptedScientificName"
-    )
-
-no_exact_match
+if (do_check) {
+  gbif_check <-
+    occurrence |>
+    select(scientificName, taxonRank, kingdom) |>
+    dplyr::rename(rank = .data$taxonRank) |>
+    distinct() |>
+    rgbif::name_backbone_checklist()
+  
+  no_exact_match <- 
+    gbif_check |>
+    filter(matchType != "EXACT") |>
+      dplyr::select(
+        "verbatim_name", "scientificName", "matchType", "confidence",
+        "verbatim_rank", "rank",
+        "status", "acceptedUsageKey", "acceptedScientificName"
+      )
+  
+  no_exact_match
+}
 ```
 
 # ----------------------------------
