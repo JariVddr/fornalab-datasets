@@ -396,7 +396,7 @@ event <-
     parentEventID = .data$parent_event_id,
     eventDate = .data$Date,
     habitat = "Agricultural landscape",
-    samplingProtocol = Method,
+    samplingProtocol = .data$Method,
     country = "Belgium",
     decimalLatitude = .data$LAT,
     decimalLongitude = .data$LON,
