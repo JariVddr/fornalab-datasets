@@ -418,7 +418,11 @@ occurrence <-
       "Ad" ~ "adult",
       "Juv" ~ "juvenile"
       ),
-    sex = .data$Sex,
+    sex = dplyr::recode_values(
+      .data$Sex,
+      "M" ~ "male",
+      "F" ~ "female"
+      ),
     basisOfRecord = dplyr::if_else(
       .data$group %in% c("birds", "bats"),
       "MachineObservation",
