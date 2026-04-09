@@ -15,9 +15,7 @@ https://github.com/inbo/fornalab-datasets/blob/main/datasets/fornalab-formica-wp
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = TRUE)
 ```
 
-# ----------------------------------
 Load libraries:
-# ----------------------------------
 
 ```{r message = FALSE}
 library(readxl)
@@ -28,9 +26,7 @@ library(digest)
 library(EML)
 ```
 
-# ----------------------------------
 # Read source data
-# ----------------------------------
 
 **columns needed:**
 * Loc
@@ -104,9 +100,7 @@ audiomoth_bats <-
   dplyr::select(selected_variables)
 ```
 
-# ----------------------------------
-# Create ID's and join data frames
-# ----------------------------------
+## Create ID's and join data frames
 
 ```{r}
 my_data <- dplyr::bind_rows(pitfalls, transects, quadrats, audiomoth_birds, audiomoth_bats) |>
@@ -128,9 +122,7 @@ my_data <- dplyr::bind_rows(pitfalls, transects, quadrats, audiomoth_birds, audi
 my_data
 ```
 
-# ----------------------------------
-# Provide metadata
-# ----------------------------------
+# Prepare metadata
 
 ```{r basic metadata}
 short_name <- "DIGITAF_BIODIVERSITY_FLEMISH_TREEROWS"
@@ -376,11 +368,11 @@ How?
 logo<- "https://digitaf.eu/wp-content/uploads/2022/10/logoDigitAF_HR.png"
 ```
 
-# ----------------------------------
 # Darwin core transformation
-# ----------------------------------
 
-```{r dwc transformation}
+## Darwin core event
+
+```{r event}
 event <- 
   my_data |> 
   dplyr::mutate(
@@ -405,7 +397,11 @@ event <-
     eventRemarks = ""
   ) |> 
   dplyr::distinct()
+```
 
+## Occurrence extension
+
+```{r occurrence}
 occurrence <-      
   my_data |> 
   dplyr::filter(!is.na(Spec)) |> 
@@ -451,9 +447,7 @@ occurrence <-
   )
 ```
 
-# ----------------------------------
 # Data quality check
-# ----------------------------------
 
 ## Check classes of columns
 
@@ -477,12 +471,9 @@ length(unique(event$eventID)) == nrow(event)
 length(unique(occurrence$occurrenceID)) == nrow(occurrence)
 ```
 
-
-
 ## Check species names with GBIF backbone
 
 * verbatim = the provided data
-
 
 ```{r}
 do_check <- FALSE
@@ -508,9 +499,7 @@ if (do_check) {
 }
 ```
 
-# ----------------------------------
-# Create metadata file (eml.xml)
-# ----------------------------------
+# Create metadata (EML)
 
 ## Function to create contributors in EML format
 
@@ -627,9 +616,6 @@ eml$dataset$project = list(
       personnel = create_eml_contributors(project_personnel)
     )
 
-# -------------------------
-# Metadataset
-# -------------------------
 eml$additionalMetadata = list(
     metadata = list(
       gbif = list(
@@ -650,11 +636,9 @@ eml$additionalMetadata = list(
 eml$additionalMetadata$metadata$gbif$bibliography$citation <- references
 ```
 
-# ----------------------------------
 # Write data
-# ----------------------------------
 
-## Write darwin core
+## Write Darwin Core Archive
 
 ```{r write dwc}
 dir_export <- here::here(directory, "processed")
@@ -664,6 +648,8 @@ dir_export <- here::here(directory, "processed")
 readr::write_csv(event, here::here(dir_export, "event.csv"), na = "")
 readr::write_csv(occurrence, here::here(dir_export, "occurrence.csv"), na = "")
 ```
+
+## Write eml.xml
 
 ```{r write EML}
 EML::write_eml(eml, here::here(dir_export, "eml.xml"))
