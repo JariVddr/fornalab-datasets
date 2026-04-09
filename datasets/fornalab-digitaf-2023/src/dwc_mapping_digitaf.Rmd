@@ -470,6 +470,14 @@ purrr::map(event[, check_event_numeric], is.numeric)
 is.numeric(occurrence$organismQuantity)
 ```
 
+## Check for unique id's
+
+```{r}
+length(unique(event$eventID)) == nrow(event)
+length(unique(occurrence$occurrenceID)) == nrow(occurrence)
+```
+
+
 
 ## Check species names with GBIF backbone
 
