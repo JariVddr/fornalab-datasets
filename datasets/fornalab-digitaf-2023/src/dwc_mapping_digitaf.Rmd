@@ -393,8 +393,7 @@ event <-
     decimalLatitude = .data$LAT,
     decimalLongitude = .data$LON,
     geodeticDatum = "EPSG:4326",
-    coordinateUncertaintyInMeters = 5,
-    eventRemarks = ""
+    coordinateUncertaintyInMeters = 5
   ) |> 
   dplyr::distinct()
 ```
