@@ -2,7 +2,7 @@
 
 ## Rationale
 
-This repository contains the functionality to standardize several datasets of the [Forest & Nature Lab (ForNaLab)](https://www.ugent.be/bw/environment/en/research/fornalab) to [Darwin Core Occurrence](https://www.gbif.org/dataset-classes) datasets that can be harvested by [GBIF](http://www.gbif.org). These datasets are published in the framework of the project [Forest Microclimate Assessment (FORMICA)](https://formica.ugent.be/).
+This repository contains the functionality to standardize several datasets of the [Forest & Nature Lab (ForNaLab)](https://www.ugent.be/bw/environment/en/research/fornalab) to [Darwin Core Occurrence](https://www.gbif.org/dataset-classes) datasets that can be harvested by [GBIF](http://www.gbif.org).
 
 ## Datasets
 
