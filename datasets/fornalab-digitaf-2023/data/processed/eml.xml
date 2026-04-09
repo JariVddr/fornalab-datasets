@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<eml:eml xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.2" packageId="ca8dfc45-bc8c-4f6a-9075-fef8b6c72aba" system="uuid" xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0 https://eml.ecoinformatics.org/eml-2.2.0/eml.xsd">
+<eml:eml xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.2" packageId="64643367-21a6-4387-b19b-9dac003c9454" system="uuid" xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0 https://eml.ecoinformatics.org/eml-2.2.0/eml.xsd">
   <dataset>
     <shortName>DIGITAF_BIODIVERSITY_FLEMISH_TREEROWS</shortName>
     <title>Landscape mitigation effects for improvements of biodiversity levels in tree rows next to cereal fields</title>
@@ -46,7 +46,6 @@
       </individualName>
       <organizationName>Royal Belgian Institute of Natural Sciences</organizationName>
       <electronicMailAddress>lbaert@naturalsciences.be</electronicMailAddress>
-      <userId directory="https://orcid.org/"/>
     </creator>
     <creator>
       <individualName>
@@ -71,9 +70,7 @@
         <givenName>Koen</givenName>
         <surName>Lock</surName>
       </individualName>
-      <organizationName/>
       <electronicMailAddress>koen_lock@hotmail.com</electronicMailAddress>
-      <userId directory="https://orcid.org/"/>
     </creator>
     <creator>
       <individualName>
@@ -82,7 +79,6 @@
       </individualName>
       <organizationName>Forest &amp; Nature Lab, Ghent University</organizationName>
       <electronicMailAddress>astvdnbo.vandenbossche@ugent.be</electronicMailAddress>
-      <userId directory="https://orcid.org/"/>
     </creator>
     <creator>
       <individualName>
@@ -100,7 +96,6 @@
       </individualName>
       <organizationName>ARABEL</organizationName>
       <electronicMailAddress>johan.van.keer1@gmail.com</electronicMailAddress>
-      <userId directory="https://orcid.org/"/>
     </creator>
     <creator>
       <individualName>
@@ -109,7 +104,6 @@
       </individualName>
       <organizationName>Forest &amp; Nature Lab, Ghent University</organizationName>
       <electronicMailAddress>luc.willems@ugent.be</electronicMailAddress>
-      <userId directory="https://orcid.org/"/>
     </creator>
     <creator>
       <individualName>

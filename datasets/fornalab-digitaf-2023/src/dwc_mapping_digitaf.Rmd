@@ -189,7 +189,7 @@ creators <- list(   # If info not available: Add: NA_character_
     organization = "Royal Belgian Institute of Natural Sciences",
     first_name = "Léon",
     last_name = "Baert",
-    orcid = ""
+    orcid = NA_character_
   ),
   list(
     title = "Augustijn De Ketelaere",
@@ -213,7 +213,7 @@ creators <- list(   # If info not available: Add: NA_character_
   #  organization = "Aculea, Natuurpunt Studie",
   #  first_name = "Jens",
   #  last_name = "D'Haeseleer",
-  #  orcid = ""
+  #  orcid = NA_character_
   #),
   #list(
   #  title = "Jef Hendrix",
@@ -221,15 +221,15 @@ creators <- list(   # If info not available: Add: NA_character_
   #  organization = "Natuurpunt",
   #  first_name = "Jef",
   #  last_name = "Hendrix",
-  #  orcid = ""
+  #  orcid = NA_character_
   #),
   list(
     title = "Koen Lock",
     email = "koen_lock@hotmail.com",
-    organization = "",
+    organization = NA_character_,
     first_name = "Koen",
     last_name = "Lock",
-    orcid = ""
+    orcid = NA_character_
   ),
   list(
     title = "Astrid Van den Bossche",
@@ -237,7 +237,7 @@ creators <- list(   # If info not available: Add: NA_character_
     organization = "Forest & Nature Lab, Ghent University",
     first_name = "Astrid",
     last_name = "Van den Bossche",
-    orcid = ""
+    orcid = NA_character_
   ),
   list(
     title = "Bob Vandendriessche",
@@ -253,15 +253,15 @@ creators <- list(   # If info not available: Add: NA_character_
     organization = "ARABEL",
     first_name = "Johan",
     last_name = "Van Keer",
-    orcid = ""
+    orcid = NA_character_
   ),
   #list(
   #  title = "Marc Van Kerckvoorde",
   #  email = "vankerckvoordemarc@gmail.com",
-  #  organization = "",
+  #  organization = NA_character_,
   #  first_name = "Marc",
   #  last_name = "Van Kerckvoorde",
-  #  orcid = ""
+  #  orcid = NA_character_
   #),
   list(
     title = "Luc Willems",
@@ -269,7 +269,7 @@ creators <- list(   # If info not available: Add: NA_character_
     organization = "Forest & Nature Lab, Ghent University",
     first_name = "Luc",
     last_name = "Willems",
-    orcid = ""
+    orcid = NA_character_
   ),
   list(
     title = "Sanne Govaert",
