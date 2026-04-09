@@ -87,7 +87,7 @@ audiomoth_birds <-
   audiomoth_birds_raw |>
   dplyr::mutate(
     Sampletime = "Spring",
-    Number = 1
+    Number = NA # Only presence-absence data
     ) |>
   dplyr::select(selected_variables)
 
@@ -95,7 +95,7 @@ audiomoth_bats <-
   audiomoth_bats_raw |>
   dplyr::mutate(
     Sampletime = "Spring",
-    Number = 1
+    Number =  NA # Only presence-absence data
   ) |>
   dplyr::select(selected_variables)
 ```
@@ -439,7 +439,7 @@ occurrence <-
       ),
     organismQuantityType = dplyr::if_else(
       .data$group %in% c("birds", "bats"), 
-      "presence/absence",
+      NA_character_,
       organismQuantityType
       ),
     occurrenceStatus = "present",
