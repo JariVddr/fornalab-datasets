@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<eml:eml xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.2" packageId="64643367-21a6-4387-b19b-9dac003c9454" system="uuid" xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0 https://eml.ecoinformatics.org/eml-2.2.0/eml.xsd">
+<eml:eml xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.2" packageId="4d3d0c6c-7f65-4eff-bebf-69feb9b07c29" system="uuid" xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0 https://eml.ecoinformatics.org/eml-2.2.0/eml.xsd">
   <dataset>
-    <shortName>DIGITAF_BIODIVERSITY_FLEMISH_TREEROWS</shortName>
+    <shortName>DIGITAF_Flanders</shortName>
     <title>Landscape mitigation effects for improvements of biodiversity levels in tree rows next to cereal fields</title>
     <creator>
       <individualName>
@@ -17,7 +17,7 @@
         <givenName>Maxime</givenName>
         <surName>Eeraerts</surName>
       </individualName>
-      <organizationName>Forest &amp; Nature Lab, Ghent University</organizationName>
+      <organizationName>Forest &amp; Nature Lab, Ghent University; Estación Biológica de Doñana</organizationName>
       <electronicMailAddress>Maxime.eeraerts@ugent.be</electronicMailAddress>
       <userId directory="https://orcid.org/">0000-0003-2739-9704</userId>
     </creator>
@@ -35,7 +35,7 @@
         <givenName>Pallieter</givenName>
         <surName>De Smedt</surName>
       </individualName>
-      <organizationName>Forest &amp; Nature Lab, Ghent University</organizationName>
+      <organizationName>Forest &amp; Nature Lab, Ghent University; SPINICORNIS; ARABEL</organizationName>
       <electronicMailAddress>pallieter.desmedt@ugent.be</electronicMailAddress>
       <userId directory="https://orcid.org/">0000-0002-3073-6751</userId>
     </creator>
@@ -52,7 +52,7 @@
         <givenName>Augustijn</givenName>
         <surName>De Ketelaere</surName>
       </individualName>
-      <organizationName>Aculea, Natuurpunt</organizationName>
+      <organizationName>Aculea, Natuurpunt; Royal Belgian Institute of Natural Sciences (scientific collaborator)</organizationName>
       <electronicMailAddress>augustijn.de.ketelaere@gmail.com</electronicMailAddress>
       <userId directory="https://orcid.org/">0009-0007-0260-5483</userId>
     </creator>
@@ -64,6 +64,14 @@
       <organizationName>Royal Belgian Institute of Natural Sciences</organizationName>
       <electronicMailAddress>wdekonick@naturalsciences.be</electronicMailAddress>
       <userId directory="https://orcid.org/">0000-0002-7065-7310</userId>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Jens</givenName>
+        <surName>D'Haeseleer</surName>
+      </individualName>
+      <organizationName>Aculea, Natuurpunt Studie</organizationName>
+      <electronicMailAddress>jens.dhaeseleer@natuurpunt.be</electronicMailAddress>
     </creator>
     <creator>
       <individualName>
@@ -96,6 +104,13 @@
       </individualName>
       <organizationName>ARABEL</organizationName>
       <electronicMailAddress>johan.van.keer1@gmail.com</electronicMailAddress>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Marc</givenName>
+        <surName>Van Kerckvoorde</surName>
+      </individualName>
+      <electronicMailAddress>vankerckvoordemarc@gmail.com</electronicMailAddress>
     </creator>
     <creator>
       <individualName>
@@ -165,10 +180,10 @@
       <geographicCoverage>
         <geographicDescription>Flemish cereal fields</geographicDescription>
         <boundingCoordinates>
-          <westBoundingCoordinate>2.8078</westBoundingCoordinate>
-          <eastBoundingCoordinate>5.0037</eastBoundingCoordinate>
-          <northBoundingCoordinate>51.1135</northBoundingCoordinate>
-          <southBoundingCoordinate>50.7582</southBoundingCoordinate>
+          <westBoundingCoordinate>NA</westBoundingCoordinate>
+          <eastBoundingCoordinate>NA</eastBoundingCoordinate>
+          <northBoundingCoordinate>NA</northBoundingCoordinate>
+          <southBoundingCoordinate>NA</southBoundingCoordinate>
         </boundingCoordinates>
       </geographicCoverage>
       <temporalCoverage>
