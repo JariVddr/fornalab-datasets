@@ -122,29 +122,18 @@ my_data <- dplyr::bind_rows(pitfalls, transects, quadrats, audiomoth_birds, audi
     field = toupper(Type), # set in capital letters
     # Use 'event_id' and 'parent_event_id' to create unique event identifiers for plots
     location_id = paste("DIGITAF_FLANDERS", "LOCATION", Loc, sep = ":"),
-<<<<<<< HEAD
     # plot_id = paste("DIGITAF_FLANDERS", "PLOT", Loc, Type, sep = ":"),
     event_id = dplyr::if_else(Method_txt %in% c("Pitfall", "Transect"), 
                               paste("DIGITAF_FLANDERS", "SAMPLE", Loc, Type, Method_txt, Sampletime, sep = ":"),
                               paste("DIGITAF_FLANDERS", "SAMPLE", Loc, Type, Method_txt, sep = ":"))
   )
-=======
-    plot_id = paste("DIGITAF_FLANDERS", "PLOT", Loc, Type, sep = ":"),
-    event_id = paste("DIGITAF_FLANDERS", "SAMPLE", Loc, Type, Method, Sampletime, sep = ":")
-  )
-my_data$occurrenceID <- gsub("_BIODIVERSITY_FLEMISH_TREEROWS", "", my_data$occurrenceID)
->>>>>>> 2386cc66cfa6fc13254240f5b98b10cfd51b4195
 my_data
 ```
 
 # Prepare metadata
 
 ```{r basic metadata}
-<<<<<<< HEAD
 short_name <- "DIGITAF_FLANDERS"
-=======
-short_name <- "DIGITAF_Flanders"
->>>>>>> 2386cc66cfa6fc13254240f5b98b10cfd51b4195
 title <- "Landscape mitigation effects for improvements of biodiversity levels in tree rows next to cereal fields"
 abstract <- c(
   "DIGITAF_BIODIVERSITY_FLEMISH_TREEROWS is a sampling event dataset published by Ghent University. It contains information on an exhaustive sampling event in 64 Flemish plots across 27 cereal fields. At each field, a plot was established in a bordering tree row (tree), in a treeless field margin (crtl) and in 10 fields we had the permission to sample in the field (crop). Fields were selected along a gradient of landscape composition across the available Flemish palette of landscapes. The dataset includes information on a biodiversity balance sampled as a snapshot with high taxonomic resolution. Mentioned groups were identified by any of our co-authors (unless otherwise indicated) to high taxonomic resolution (generally species level). Methods applied incorporated (i) 2 pitfall traps (14 days, Ø 9cm, d 11cm, autoantifreeze dilution, June) for beetles (Histeridae, Carabidae, Staphylinidae), spiders, ants, isopods, millipedes, centipedes and harvestmen, (ii) a transect walk (50m, 15', May-June & September) along the plot for lepidoptera, bees, wasps, flies and pollinating beetles, (iii) a vegetation quadrat of 10m² (2x5 or 1x10, depending on margin width, May-June) for plants and (iv) AudioMoth deployment between 05:15 CET-10:00 CET, 19:30-22:00 CET and 22:30-02:00 CET (48h, 1' per 15', 0-96 kHz, May-June) for birds and bats. Audiofiles were processed with BTO acoustic pipeline and the BirdNET analyzer with manual verification afterwards. Bat and bird data are presented in presence-absence (under one date, better resolution data can be requested), plant data in cover percentage and all other data in number of individuals caught. A metadata-file with parcel specifications will be published with the Zenodo-records of this dataset and can be requested through our contacts. With the same records, we will also publish the validated activity-based dataset for bats.",
@@ -226,17 +215,6 @@ creators <- list(   # If info not available: Add: NA_character_
     last_name = "D'Haeseleer",
     orcid = NA_character_
   ),
-<<<<<<< HEAD
-=======
-  #list(
-  #  title = "Jef Hendrix",
-  #  email = "jef.hendrix@natuurpunt.be",
-  #  organization = "Natuurpunt",
-  #  first_name = "Jef",
-  #  last_name = "Hendrix",
-  #  orcid = NA_character_
-  #),
->>>>>>> 2386cc66cfa6fc13254240f5b98b10cfd51b4195
   list(
     title = "Koen Lock",
     email = "koen_lock@hotmail.com",
@@ -403,7 +381,6 @@ event_location <- my_data |>
     parentEventID = NA_character_,
     samplingProtocol = NA_character_,
     samplingEffort = NA_character_)
-<<<<<<< HEAD
 #event_plot <- my_data |>
 #  dplyr::filter(!is.na(Spec)) |> 
 #  dplyr::mutate(
@@ -412,26 +389,12 @@ event_location <- my_data |>
 #    parentEventID = location_id,
 #    samplingProtocol = NA_character_,
 #    samplingEffort = NA_character_)
-=======
-event_plot <- my_data |>
-  dplyr::filter(!is.na(Spec)) |> 
-  dplyr::mutate(
-    .keep = "none",
-    eventID = plot_id,
-    parentEventID = location_id,
-    samplingProtocol = NA_character_,
-    samplingEffort = NA_character_)
->>>>>>> 2386cc66cfa6fc13254240f5b98b10cfd51b4195
 event_sample <- my_data |>
   dplyr::filter(!is.na(Spec)) |> 
   dplyr::mutate(
     .keep = "none",
     eventID = event_id,
-<<<<<<< HEAD
     parentEventID = location_id,
-=======
-    parentEventID = plot_id,
->>>>>>> 2386cc66cfa6fc13254240f5b98b10cfd51b4195
     samplingProtocol = tolower(Method),
     samplingEffort = dplyr::case_when(
       samplingProtocol == "pitfall" ~ "1 trap for 14 days, Ø 9 cm, depth 11 cm, antifreeze",
@@ -446,11 +409,7 @@ event_sample <- my_data |>
 
 event <- dplyr::bind_rows(
   event_location,
-<<<<<<< HEAD
   #event_plot,
-=======
-  event_plot,
->>>>>>> 2386cc66cfa6fc13254240f5b98b10cfd51b4195
   event_sample) |>
   dplyr::mutate(
     type = "Event",
@@ -465,12 +424,8 @@ event <- dplyr::bind_rows(
     geodeticDatum = "EPSG:4326",
     coordinateUncertaintyInMeters = 5
   ) |>
-<<<<<<< HEAD
   dplyr::distinct() %>%
   filter(!is.na(parentEventID))
-=======
-  dplyr::distinct()
->>>>>>> 2386cc66cfa6fc13254240f5b98b10cfd51b4195
 ```
 
 ## Occurrence extension
