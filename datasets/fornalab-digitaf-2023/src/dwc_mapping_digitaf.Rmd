@@ -118,14 +118,11 @@ my_data <- dplyr::bind_rows(pitfalls, transects, quadrats, audiomoth_birds, audi
     "Amount" = Number
   ) |>
   dplyr::mutate(
-    TAG = paste(Loc, Type, Sampletime, sep = "_"),
-    field = toupper(Type), # set in capital letters
-    # Use 'event_id' and 'parent_event_id' to create unique event identifiers for plots
     location_id = paste("DIGITAF_FLANDERS", "LOCATION", Loc, sep = ":"),
-    # plot_id = paste("DIGITAF_FLANDERS", "PLOT", Loc, Type, sep = ":"),
-    event_id = dplyr::if_else(Method_txt %in% c("pitfall", "transect"), 
-                              paste("DIGITAF_FLANDERS", "SAMPLE", Loc, Type, Method_txt, Sampletime, sep = ":"),
-                              paste("DIGITAF_FLANDERS", "SAMPLE", Loc, Type, Method_txt, sep = ":"))
+    event_id = dplyr::if_else(Method_txt %in% c("pitfall", "transect"),
+      paste("DIGITAF_FLANDERS", "SAMPLE", Loc, Type, Method_txt, Sampletime, sep = ":"),
+      paste("DIGITAF_FLANDERS", "SAMPLE", Loc, Type, Method_txt, sep = ":")
+    )
   )
 my_data
 ```
@@ -365,7 +362,7 @@ How?
 
 27 cereal fields were selected along a gradient of landscape complexity throughout Flanders, each bordered with a hedgerow (tree row). We used the proxy of a tree row for agroforestry since mature agroforestry fields are rare."
 
-logo<- "https://digitaf.eu/wp-content/uploads/2022/10/logoDigitAF_HR.png"
+logo <- "https://digitaf.eu/wp-content/uploads/2022/10/logoDigitAF_HR.png"
 ```
 
 # Darwin core transformation
@@ -373,23 +370,7 @@ logo<- "https://digitaf.eu/wp-content/uploads/2022/10/logoDigitAF_HR.png"
 ## Darwin core event
 
 ```{r event}
-event_location <- my_data |>
-  dplyr::filter(!is.na(Spec)) |> 
-  dplyr::mutate(
-    .keep = "none",
-    eventID = location_id,
-    parentEventID = NA_character_,
-    samplingProtocol = NA_character_,
-    samplingEffort = NA_character_)
-#event_plot <- my_data |>
-#  dplyr::filter(!is.na(Spec)) |> 
-#  dplyr::mutate(
-#    .keep = "none",
-#    eventID = plot_id,
-#    parentEventID = location_id,
-#    samplingProtocol = NA_character_,
-#    samplingEffort = NA_character_)
-event_sample <- my_data |>
+event <- my_data |>
   dplyr::filter(!is.na(Spec)) |> 
   dplyr::mutate(
     .keep = "none",
@@ -406,12 +387,7 @@ event_sample <- my_data |>
     contintent = "Europe",
     decimalLatitude = .data$LAT, 
     decimalLongitude = .data$LON,
-    eventDate = .data$Date)
-
-event <- dplyr::bind_rows(
-  event_location,
-  #event_plot,
-  event_sample) |>
+    eventDate = .data$Date) |>
   dplyr::mutate(
     type = "Event",
     language = data_language,
@@ -504,12 +480,6 @@ is.numeric(occurrence$organismQuantity)
 ```{r}
 length(unique(event$eventID)) == nrow(event)
 length(unique(occurrence$occurrenceID)) == nrow(occurrence)
-
-length(unique(occurrence$eventID))
-unique(occurrence$eventID)
-
-occurrence
-event
 ```
 
 ## Check species names with GBIF backbone
