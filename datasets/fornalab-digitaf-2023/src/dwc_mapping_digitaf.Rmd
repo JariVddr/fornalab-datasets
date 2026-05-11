@@ -61,32 +61,37 @@ audiomoth_bats_raw <- read.csv(here::here(directory, "raw", "Obs.AudioMoths-bats
 ```{r}
 selected_variables <- c(
   "Spec", "Loc", "Type", "lat", "lng", "Method", "date", "Det", "Stage", "Sex",
-  "Family", "Order", "Spec_group", "Sampletime", "Number", "occurrenceID"
+  "Family", "Order", "Spec_group", "Sampletime", "Number", "occurrenceID", "Method_txt"
 )
   
 pitfalls <-
   pitfalls_raw |>
   dplyr::mutate(
-    Sampletime = dplyr::if_else(Trapnr == 1, "Spring - trap 1", "Spring - trap 2")
+    Method = "Pitfall", 
+    Method_txt = "Pitfall", 
+    Sampletime = dplyr::if_else(Trapnr == 1, "Trap1", "Trap2")
   ) |>
   dplyr::select(selected_variables)
 
 transects <-
   transects_raw |>
   dplyr::mutate(
-    Sampletime = dplyr::if_else(Sampletime == 1, "Spring", "Late summer")
+    Method_txt = "Transect", 
+    Sampletime = dplyr::if_else(Sampletime == 1, "Spring", "September")
   ) |>
   dplyr::select(selected_variables)
 
 quadrats <-
   quadrats_raw |>
-  dplyr::mutate(Sampletime = "Spring") |>
+  dplyr::mutate(Method_txt = "Quadrat") |>
+  dplyr::mutate(Sampletime = "") |>
   dplyr::select(selected_variables)
 
 audiomoth_birds <-
   audiomoth_birds_raw |>
   dplyr::mutate(
-    Sampletime = "Spring",
+    Method_txt = "AudioMoth",
+    Sampletime = "",
     Number = NA # Only presence-absence data
     ) |>
   dplyr::select(selected_variables)
@@ -94,7 +99,8 @@ audiomoth_birds <-
 audiomoth_bats <-
   audiomoth_bats_raw |>
   dplyr::mutate(
-    Sampletime = "Spring",
+    Method_txt = "AudioMoth",
+    Sampletime = "",
     Number =  NA # Only presence-absence data
   ) |>
   dplyr::select(selected_variables)
@@ -115,22 +121,24 @@ my_data <- dplyr::bind_rows(pitfalls, transects, quadrats, audiomoth_birds, audi
     TAG = paste(Loc, Type, Sampletime, sep = "_"),
     field = toupper(Type), # set in capital letters
     # Use 'event_id' and 'parent_event_id' to create unique event identifiers for plots
-    event_id = paste("DIGITAF_BIODIVERSITY_FLEMISH_TREEROWS", "PLOT", Loc, Type, Sampletime, sep = ":"),
-    parent_event_id = paste("DIGITAF_BIODIVERSITY_FLEMISH_TREEROWS", "LOCATION", Loc, sep = ":")
-    ) 
-
+    location_id = paste("DIGITAF_FLANDERS", "LOCATION", Loc, sep = ":"),
+    # plot_id = paste("DIGITAF_FLANDERS", "PLOT", Loc, Type, sep = ":"),
+    event_id = dplyr::if_else(Method_txt %in% c("Pitfall", "Transect"), 
+                              paste("DIGITAF_FLANDERS", "SAMPLE", Loc, Type, Method_txt, Sampletime, sep = ":"),
+                              paste("DIGITAF_FLANDERS", "SAMPLE", Loc, Type, Method_txt, sep = ":"))
+  )
 my_data
 ```
 
 # Prepare metadata
 
 ```{r basic metadata}
-short_name <- "DIGITAF_BIODIVERSITY_FLEMISH_TREEROWS"
+short_name <- "DIGITAF_FLANDERS"
 title <- "Landscape mitigation effects for improvements of biodiversity levels in tree rows next to cereal fields"
 abstract <- c(
   "DIGITAF_BIODIVERSITY_FLEMISH_TREEROWS is a sampling event dataset published by Ghent University. It contains information on an exhaustive sampling event in 64 Flemish plots across 27 cereal fields. At each field, a plot was established in a bordering tree row (tree), in a treeless field margin (crtl) and in 10 fields we had the permission to sample in the field (crop). Fields were selected along a gradient of landscape composition across the available Flemish palette of landscapes. The dataset includes information on a biodiversity balance sampled as a snapshot with high taxonomic resolution. Mentioned groups were identified by any of our co-authors (unless otherwise indicated) to high taxonomic resolution (generally species level). Methods applied incorporated (i) 2 pitfall traps (14 days, Ø 9cm, d 11cm, autoantifreeze dilution, June) for beetles (Histeridae, Carabidae, Staphylinidae), spiders, ants, isopods, millipedes, centipedes and harvestmen, (ii) a transect walk (50m, 15', May-June & September) along the plot for lepidoptera, bees, wasps, flies and pollinating beetles, (iii) a vegetation quadrat of 10m² (2x5 or 1x10, depending on margin width, May-June) for plants and (iv) AudioMoth deployment between 05:15 CET-10:00 CET, 19:30-22:00 CET and 22:30-02:00 CET (48h, 1' per 15', 0-96 kHz, May-June) for birds and bats. Audiofiles were processed with BTO acoustic pipeline and the BirdNET analyzer with manual verification afterwards. Bat and bird data are presented in presence-absence (under one date, better resolution data can be requested), plant data in cover percentage and all other data in number of individuals caught. A metadata-file with parcel specifications will be published with the Zenodo-records of this dataset and can be requested through our contacts. With the same records, we will also publish the validated activity-based dataset for bats.",
 "We have released this dataset under a Creative Commons waiver. If you have any questions regarding this dataset, don't hesitate to contact us via the contact information provided in the metadata.",
-"This sampling took place in the framework of the DIGItal Tools to help AgroForestry (<a href=\"https://digitaf.eu/\">DigitAF</a>) project (grant	agreement	no. 101059794), co-funded	by	the	European	Commission and the	European	Research	Agency,	within	the	Horizon	Europe	programme. This dataset was published with technical support provided by the Research Institute for Nature and Forest (INBO). We thank Marc van Kerckvoorde for the intensive identifications of carabids, staphylinids and histerids, Jens D'Haeseleer for the bee identifications and Jef Hendrix for verifying some hoverfly specimens.")
+"This sampling took place in the framework of the DIGItal Tools to help AgroForestry (<a href=\"https://digitaf.eu/\">DigitAF</a>) project (grant	agreement	no. 101059794), co-funded	by	the	European	Commission and the	European	Research	Agency,	within	the	Horizon	Europe	programme. This dataset was published with technical support provided by the Research Institute for Nature and Forest (INBO). We thank Jef Hendrix for verifying some hoverfly specimens.")
 ```
 
 ```{r metadata}
@@ -154,7 +162,7 @@ creators <- list(   # If info not available: Add: NA_character_
   list(
     title = "Maxime Eeraerts",
     email = "Maxime.eeraerts@ugent.be",
-    organization = "Forest & Nature Lab, Ghent University", # Two affiliations: how to adress properly? (Estación Biológica de Doñana)
+    organization = "Forest & Nature Lab, Ghent University; Estación Biológica de Doñana", 
     first_name = "Maxime",
     last_name = "Eeraerts",
     orcid = "0000-0003-2739-9704"
@@ -170,7 +178,7 @@ creators <- list(   # If info not available: Add: NA_character_
   list(
     title = "Pallieter De Smedt",
     email = "pallieter.desmedt@ugent.be",
-    organization = "Forest & Nature Lab, Ghent University", # Three affiliations: how to adress properly? (SPINICORNIS, ARABEL)
+    organization = "Forest & Nature Lab, Ghent University; SPINICORNIS; ARABEL", 
     first_name = "Pallieter",
     last_name = "De Smedt",
     orcid = "0000-0002-3073-6751"
@@ -186,7 +194,7 @@ creators <- list(   # If info not available: Add: NA_character_
   list(
     title = "Augustijn De Ketelaere",
     email = "augustijn.de.ketelaere@gmail.com",
-    organization = "Aculea, Natuurpunt", # Two affiliations: how to adress properly? (Royal Belgian Institute of Natural Sciences (scientific collaborator))
+    organization = "Aculea, Natuurpunt; Royal Belgian Institute of Natural Sciences (scientific collaborator)", 
     first_name = "Augustijn",
     last_name = "De Ketelaere",
     orcid = "0009-0007-0260-5483"
@@ -199,22 +207,14 @@ creators <- list(   # If info not available: Add: NA_character_
     last_name = "Dekoninck",
     orcid = "0000-0002-7065-7310"
   ),
-  #list(
-  #  title = "Jens D'Haeseleer",
-  #  email = "jens.dhaeseleer@natuurpunt.be",
-  #  organization = "Aculea, Natuurpunt Studie",
-  #  first_name = "Jens",
-  #  last_name = "D'Haeseleer",
-  #  orcid = NA_character_
-  #),
-  #list(
-  #  title = "Jef Hendrix",
-  #  email = "jef.hendrix@natuurpunt.be",
-  #  organization = "Natuurpunt",
-  #  first_name = "Jef",
-  #  last_name = "Hendrix",
-  #  orcid = NA_character_
-  #),
+  list(
+    title = "Jens D'Haeseleer",
+    email = "jens.dhaeseleer@natuurpunt.be",
+    organization = "Aculea, Natuurpunt Studie",
+    first_name = "Jens",
+    last_name = "D'Haeseleer",
+    orcid = NA_character_
+  ),
   list(
     title = "Koen Lock",
     email = "koen_lock@hotmail.com",
@@ -247,14 +247,14 @@ creators <- list(   # If info not available: Add: NA_character_
     last_name = "Van Keer",
     orcid = NA_character_
   ),
-  #list(
-  #  title = "Marc Van Kerckvoorde",
-  #  email = "vankerckvoordemarc@gmail.com",
-  #  organization = NA_character_,
-  #  first_name = "Marc",
-  #  last_name = "Van Kerckvoorde",
-  #  orcid = NA_character_
-  #),
+  list(
+    title = "Marc Van Kerckvoorde",
+    email = "vankerckvoordemarc@gmail.com",
+    organization = NA_character_,
+    first_name = "Marc",
+    last_name = "Van Kerckvoorde",
+    orcid = NA_character_
+  ),
   list(
     title = "Luc Willems",
     email = "luc.willems@ugent.be",
@@ -373,29 +373,59 @@ logo<- "https://digitaf.eu/wp-content/uploads/2022/10/logoDigitAF_HR.png"
 ## Darwin core event
 
 ```{r event}
-event <- 
-  my_data |> 
+event_location <- my_data |>
+  dplyr::filter(!is.na(Spec)) |> 
   dplyr::mutate(
     .keep = "none",
+    eventID = location_id,
+    parentEventID = NA_character_,
+    samplingProtocol = NA_character_,
+    samplingEffort = NA_character_)
+#event_plot <- my_data |>
+#  dplyr::filter(!is.na(Spec)) |> 
+#  dplyr::mutate(
+#    .keep = "none",
+#    eventID = plot_id,
+#    parentEventID = location_id,
+#    samplingProtocol = NA_character_,
+#    samplingEffort = NA_character_)
+event_sample <- my_data |>
+  dplyr::filter(!is.na(Spec)) |> 
+  dplyr::mutate(
+    .keep = "none",
+    eventID = event_id,
+    parentEventID = location_id,
+    samplingProtocol = tolower(Method),
+    samplingEffort = dplyr::case_when(
+      samplingProtocol == "pitfall" ~ "1 trap for 14 days, Ø 9 cm, depth 11 cm, antifreeze",
+      samplingProtocol == "15' transect" ~ "15 min over 50 m",
+      samplingProtocol == "10m² quadrat" ~ "10 m² quadrat",
+      samplingProtocol == "audiomoth recording" ~ 
+        "48h; 05:15–10:00, 19:30–22:00, 22:30–02:00; 1 min/15 min; 0–96 kHz",
+      TRUE ~ NA_character_),
+    decimalLatitude = .data$LAT, 
+    decimalLongitude = .data$LON,
+    eventDate = .data$Date)
+
+event <- dplyr::bind_rows(
+  event_location,
+  #event_plot,
+  event_sample) |>
+  dplyr::mutate(
     type = "Event",
     language = data_language,
-    license = data_license, 
+    license = data_license,
     rightsHolder = publisher,
     datasetID = dataset_id,
-    institutionCode = "UGent", 
+    institutionCode = "UGent",
     datasetName = title,
-    eventID = .data$event_id,
-    parentEventID = .data$parent_event_id,
-    eventDate = .data$Date,
     habitat = "agricultural landscape",
-    samplingProtocol = tolower(.data$Method),
     country = "Belgium",
-    decimalLatitude = .data$LAT,
-    decimalLongitude = .data$LON,
     geodeticDatum = "EPSG:4326",
     coordinateUncertaintyInMeters = 5
-  ) |> 
-  dplyr::distinct()
+  ) |>
+  dplyr::distinct() %>%
+  filter(!is.na(parentEventID))
 ```
 
 ## Occurrence extension
@@ -429,7 +459,7 @@ occurrence <-
       dplyr::if_else(
         .data$group %in% c("plants", "lepidoptera"),
         "HumanObservation",
-        "PreservedSpecimen"
+        "materialSample"
       )
     ),
     occurrenceID = .data$occurrenceID, 
@@ -472,6 +502,12 @@ is.numeric(occurrence$organismQuantity)
 ```{r}
 length(unique(event$eventID)) == nrow(event)
 length(unique(occurrence$occurrenceID)) == nrow(occurrence)
+
+length(unique(occurrence$eventID))
+unique(occurrence$eventID)
+
+occurrence
+event
 ```
 
 ## Check species names with GBIF backbone
