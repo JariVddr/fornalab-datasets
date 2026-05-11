@@ -403,6 +403,7 @@ event_sample <- my_data |>
       samplingProtocol == "audiomoth recording" ~ 
         "48h; 05:15–10:00, 19:30–22:00, 22:30–02:00; 1 min/15 min; 0–96 kHz",
       TRUE ~ NA_character_),
+    contintent = "Europe",
     decimalLatitude = .data$LAT, 
     decimalLongitude = .data$LON,
     eventDate = .data$Date)
