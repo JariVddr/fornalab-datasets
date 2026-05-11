@@ -67,30 +67,30 @@ selected_variables <- c(
 pitfalls <-
   pitfalls_raw |>
   dplyr::mutate(
-    Method = "Pitfall", 
-    Method_txt = "Pitfall", 
-    Sampletime = dplyr::if_else(Trapnr == 1, "Trap1", "Trap2")
+    Method = "pitfall", 
+    Method_txt = "pitfall", 
+    Sampletime = dplyr::if_else(Trapnr == 1, "trap1", "trap2")
   ) |>
   dplyr::select(selected_variables)
 
 transects <-
   transects_raw |>
   dplyr::mutate(
-    Method_txt = "Transect", 
-    Sampletime = dplyr::if_else(Sampletime == 1, "Spring", "September")
+    Method_txt = "transect", 
+    Sampletime = dplyr::if_else(Sampletime == 1, "spring", "september")
   ) |>
   dplyr::select(selected_variables)
 
 quadrats <-
   quadrats_raw |>
-  dplyr::mutate(Method_txt = "Quadrat") |>
+  dplyr::mutate(Method_txt = "quadrat") |>
   dplyr::mutate(Sampletime = "") |>
   dplyr::select(selected_variables)
 
 audiomoth_birds <-
   audiomoth_birds_raw |>
   dplyr::mutate(
-    Method_txt = "AudioMoth",
+    Method_txt = "audiomoth",
     Sampletime = "",
     Number = NA # Only presence-absence data
     ) |>
@@ -99,7 +99,7 @@ audiomoth_birds <-
 audiomoth_bats <-
   audiomoth_bats_raw |>
   dplyr::mutate(
-    Method_txt = "AudioMoth",
+    Method_txt = "audiomoth",
     Sampletime = "",
     Number =  NA # Only presence-absence data
   ) |>
@@ -123,7 +123,7 @@ my_data <- dplyr::bind_rows(pitfalls, transects, quadrats, audiomoth_birds, audi
     # Use 'event_id' and 'parent_event_id' to create unique event identifiers for plots
     location_id = paste("DIGITAF_FLANDERS", "LOCATION", Loc, sep = ":"),
     # plot_id = paste("DIGITAF_FLANDERS", "PLOT", Loc, Type, sep = ":"),
-    event_id = dplyr::if_else(Method_txt %in% c("Pitfall", "Transect"), 
+    event_id = dplyr::if_else(Method_txt %in% c("pitfall", "transect"), 
                               paste("DIGITAF_FLANDERS", "SAMPLE", Loc, Type, Method_txt, Sampletime, sep = ":"),
                               paste("DIGITAF_FLANDERS", "SAMPLE", Loc, Type, Method_txt, sep = ":"))
   )
