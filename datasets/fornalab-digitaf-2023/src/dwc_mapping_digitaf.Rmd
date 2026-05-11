@@ -417,7 +417,7 @@ event <- dplyr::bind_rows(
     license = data_license,
     rightsHolder = publisher,
     datasetID = dataset_id,
-    institutionCode = "UGent",
+    institutionCode = "UGENT",
     datasetName = title,
     habitat = "agricultural landscape",
     country = "Belgium",
