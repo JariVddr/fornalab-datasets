@@ -122,15 +122,18 @@ my_data <- dplyr::bind_rows(pitfalls, transects, quadrats, audiomoth_birds, audi
     field = toupper(Type), # set in capital letters
     # Use 'event_id' and 'parent_event_id' to create unique event identifiers for plots
     location_id = paste("DIGITAF_FLANDERS", "LOCATION", Loc, sep = ":"),
+<<<<<<< HEAD
     # plot_id = paste("DIGITAF_FLANDERS", "PLOT", Loc, Type, sep = ":"),
     event_id = dplyr::if_else(Method_txt %in% c("Pitfall", "Transect"), 
                               paste("DIGITAF_FLANDERS", "SAMPLE", Loc, Type, Method_txt, Sampletime, sep = ":"),
                               paste("DIGITAF_FLANDERS", "SAMPLE", Loc, Type, Method_txt, sep = ":"))
   )
+=======
     plot_id = paste("DIGITAF_FLANDERS", "PLOT", Loc, Type, sep = ":"),
     event_id = paste("DIGITAF_FLANDERS", "SAMPLE", Loc, Type, Method, Sampletime, sep = ":")
   )
 my_data$occurrenceID <- gsub("_BIODIVERSITY_FLEMISH_TREEROWS", "", my_data$occurrenceID)
+>>>>>>> 2386cc66cfa6fc13254240f5b98b10cfd51b4195
 my_data
 ```
 
