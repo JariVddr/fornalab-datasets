@@ -443,6 +443,7 @@ occurrence <-
     datasetID = dataset_id,
     datasetName = title,
     identifiedBy = .data$Det,
+    identificationVerificationStatus = "verified by expert",
     lifeStage = dplyr::recode_values(
       .data$Stage,
       "Ad" ~ "adult",
