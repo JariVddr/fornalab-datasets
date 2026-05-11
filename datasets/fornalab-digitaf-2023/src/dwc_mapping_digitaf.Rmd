@@ -110,15 +110,8 @@ audiomoth_bats <-
 
 ```{r}
 my_data <- dplyr::bind_rows(pitfalls, transects, quadrats, audiomoth_birds, audiomoth_bats) |>
-  dplyr::rename(
-    "Date" = date,
-    "LAT" = lat,
-    "LON" = lng,
-    "group" = Spec_group,
-    "Amount" = Number
-  ) |>
   dplyr::mutate(
-    location_id = paste("DIGITAF_FLANDERS", "LOCATION", Loc, sep = ":"),
+    parentEventID = paste("DIGITAF_FLANDERS", "LOCATION", Loc, sep = ":"),
     event_id = dplyr::if_else(Method_txt %in% c("pitfall", "transect"),
       paste("DIGITAF_FLANDERS", "SAMPLE", Loc, Type, Method_txt, Sampletime, sep = ":"),
       paste("DIGITAF_FLANDERS", "SAMPLE", Loc, Type, Method_txt, sep = ":")
@@ -280,8 +273,8 @@ creators <- list(   # If info not available: Add: NA_character_
 metadata_provider <- purrr::keep(creators, ~ .x$title %in% c("Jari Vandendriessche"))
 contact <- purrr::keep(creators, ~ .x$title == "Jari Vandendriessche")
 keywords <- c("biodiversity", "hedgerows", "agroforestry", "landscape", "beetles", "spiders", "ants", "lepidoptera", "bees", "wasps", "flies", "plants", "birds", "bats")
-begin_date <-  min(my_data$Date)
-end_date <- max(my_data$Date)
+begin_date <-  min(my_data$date)
+end_date <- max(my_data$date)
 geographic_description <- "Flemish cereal fields"
 
 taxonomic_coverage <-
@@ -375,20 +368,6 @@ event <- my_data |>
   dplyr::mutate(
     .keep = "none",
     eventID = event_id,
-    parentEventID = location_id,
-    samplingProtocol = tolower(Method),
-    samplingEffort = dplyr::case_when(
-      samplingProtocol == "pitfall" ~ "1 trap for 14 days, Ø 9 cm, depth 11 cm, antifreeze",
-      samplingProtocol == "15' transect" ~ "15 min over 50 m",
-      samplingProtocol == "10m² quadrat" ~ "10 m² quadrat",
-      samplingProtocol == "audiomoth recording" ~ 
-        "48h; 05:15–10:00, 19:30–22:00, 22:30–02:00; 1 min/15 min; 0–96 kHz",
-      TRUE ~ NA_character_),
-    continent = "Europe",
-    decimalLatitude = .data$LAT, 
-    decimalLongitude = .data$LON,
-    eventDate = .data$Date) |>
-  dplyr::mutate(
     type = "Event",
     language = data_language,
     license = data_license,
@@ -396,13 +375,26 @@ event <- my_data |>
     datasetID = dataset_id,
     institutionCode = "UGENT",
     datasetName = title,
+    parentEventID = .data$parentEventID,
+    eventDate = .data$date,
     habitat = "agricultural landscape",
+    samplingProtocol = tolower(Method),
+    samplingEffort = dplyr::recode_values(
+      .data$samplingProtocol,
+      "pitfall" ~ "1 trap for 14 days, Ø 9 cm, depth 11 cm, antifreeze",
+      "15' transect" ~ "15 min over 50 m",
+      "10m² quadrat" ~ "10 m² quadrat",
+      "audiomoth recording" ~ 
+        "48h; 05:15–10:00, 19:30–22:00, 22:30–02:00; 1 min/15 min; 0–96 kHz",
+      default = NA_character_),
     country = "Belgium",
+    continent = "Europe",
+    decimalLatitude = .data$lat, 
+    decimalLongitude = .data$lng,
     geodeticDatum = "EPSG:4326",
     coordinateUncertaintyInMeters = 5
-  ) |>
+    ) |>
   dplyr::distinct() %>%
-  filter(!is.na(parentEventID)) |>
   dplyr::select(
     eventID, type, language, license, rightsHolder, datasetID, institutionCode,
     datasetName, parentEventID, eventDate, habitat, samplingProtocol, samplingEffort,
@@ -419,47 +411,53 @@ occurrence <-
   dplyr::filter(!is.na(Spec)) |> 
   dplyr::mutate(
     .keep = "none",
-    language = data_language,
+    eventID = .data$event_id, 
     type = "Event",
+    language = data_language,
     license = data_license, 
     rightsHolder = publisher,
     datasetID = dataset_id,
     datasetName = title,
-    identifiedBy = .data$Det,
-    identificationVerificationStatus = "verified by expert",
-    lifeStage = dplyr::recode_values(
-      .data$Stage,
-      "Ad" ~ "adult",
-      "Juv" ~ "juvenile"
-      ),
+    basisOfRecord = dplyr::recode_values(
+      .data$Spec_group,
+      "birds" ~ "MachineObservation",
+      "bats" ~ "MachineObservation",
+      "plants" ~ "HumanObservation",
+      "lepidoptera" ~ "HumanObservation",
+      default = "materialSample"
+    ),
+    occurrenceID = .data$occurrenceID, 
+    organismQuantity = .data$Number, 
+    organismQuantityType = dplyr::recode_values(
+      .data$Spec_group,
+      "plants" ~ "percentage cover",
+      default = "individuals"
+    ),
+    organismQuantityType = dplyr::recode_values(
+      .data$Spec_group,
+      "birds" ~ NA_character_,
+      "bats" ~ NA_character_,
+      default = .data$organismQuantityType
+    ),
     sex = dplyr::recode_values(
       .data$Sex,
       "M" ~ "male",
       "F" ~ "female"
       ),
-    basisOfRecord = dplyr::if_else(
-      .data$group %in% c("birds", "bats"),
-      "MachineObservation",
-      dplyr::if_else(
-        .data$group %in% c("plants", "lepidoptera"),
-        "HumanObservation",
-        "materialSample"
-      )
-    ),
-    occurrenceID = .data$occurrenceID, 
-    organismQuantity = .data$Amount, 
-    organismQuantityType = dplyr::if_else(
-      .data$group == "plants", "percentage cover", "individuals"
-      ),
-    organismQuantityType = dplyr::if_else(
-      .data$group %in% c("birds", "bats"), 
-      NA_character_,
-      organismQuantityType
+    lifeStage = dplyr::recode_values(
+      .data$Stage,
+      "Ad" ~ "adult",
+      "Juv" ~ "juvenile"
       ),
     occurrenceStatus = "present",
-    eventID = .data$event_id, 
+    identifiedBy = .data$Det,
+    identificationVerificationStatus = "verified by expert",
     scientificName = .data$Spec,
-    kingdom = dplyr::if_else(.data$group == "plants", "Plantae", "Animalia"), 
+    kingdom = dplyr::recode_values(
+      .data$Spec_group,
+      "plants" ~ "Plantae",
+      default = "Animalia"
+    ),
     taxonRank = "species"
   ) |>
   dplyr::select(
