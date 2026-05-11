@@ -384,7 +384,7 @@ event <- my_data |>
       samplingProtocol == "audiomoth recording" ~ 
         "48h; 05:15–10:00, 19:30–22:00, 22:30–02:00; 1 min/15 min; 0–96 kHz",
       TRUE ~ NA_character_),
-    contintent = "Europe",
+    continent = "Europe",
     decimalLatitude = .data$LAT, 
     decimalLongitude = .data$LON,
     eventDate = .data$Date) |>
@@ -402,7 +402,13 @@ event <- my_data |>
     coordinateUncertaintyInMeters = 5
   ) |>
   dplyr::distinct() %>%
-  filter(!is.na(parentEventID))
+  filter(!is.na(parentEventID)) |>
+  dplyr::select(
+    eventID, type, language, license, rightsHolder, datasetID, institutionCode,
+    datasetName, parentEventID, eventDate, habitat, samplingProtocol, samplingEffort,
+    country, continent, decimalLatitude, decimalLongitude, geodeticDatum,
+    coordinateUncertaintyInMeters
+  )
 ```
 
 ## Occurrence extension
@@ -455,7 +461,13 @@ occurrence <-
     scientificName = .data$Spec,
     kingdom = dplyr::if_else(.data$group == "plants", "Plantae", "Animalia"), 
     taxonRank = "species"
-  )
+  ) |>
+  dplyr::select(
+    eventID, type, language, license, rightsHolder, datasetID, datasetName,
+    basisOfRecord, occurrenceID, organismQuantity, organismQuantityType, sex,
+    lifeStage, occurrenceStatus, identifiedBy, identificationVerificationStatus,
+    scientificName, kingdom, taxonRank
+    )
 ```
 
 # Data quality check
