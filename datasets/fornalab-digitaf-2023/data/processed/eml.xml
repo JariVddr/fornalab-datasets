@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <eml:eml xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.2" packageId="21edfa62-7c07-4429-a2f7-97117a96fc41" system="uuid" xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0 https://eml.ecoinformatics.org/eml-2.2.0/eml.xsd">
   <dataset>
     <shortName>DIGITAF_FLANDERS</shortName>
+=======
+<eml:eml xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.2" packageId="4d3d0c6c-7f65-4eff-bebf-69feb9b07c29" system="uuid" xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0 https://eml.ecoinformatics.org/eml-2.2.0/eml.xsd">
+  <dataset>
+    <shortName>DIGITAF_Flanders</shortName>
+>>>>>>> 2386cc66cfa6fc13254240f5b98b10cfd51b4195
     <title>Landscape mitigation effects for improvements of biodiversity levels in tree rows next to cereal fields</title>
     <creator>
       <individualName>
@@ -180,10 +186,10 @@
       <geographicCoverage>
         <geographicDescription>Flemish cereal fields</geographicDescription>
         <boundingCoordinates>
-          <westBoundingCoordinate>2.8078</westBoundingCoordinate>
-          <eastBoundingCoordinate>5.0037</eastBoundingCoordinate>
-          <northBoundingCoordinate>51.1135</northBoundingCoordinate>
-          <southBoundingCoordinate>50.7582</southBoundingCoordinate>
+          <westBoundingCoordinate>NA</westBoundingCoordinate>
+          <eastBoundingCoordinate>NA</eastBoundingCoordinate>
+          <northBoundingCoordinate>NA</northBoundingCoordinate>
+          <southBoundingCoordinate>NA</southBoundingCoordinate>
         </boundingCoordinates>
       </geographicCoverage>
       <temporalCoverage>
