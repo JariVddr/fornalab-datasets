@@ -148,8 +148,8 @@ update_frequency <- "notPlanned"
 type <- "Samplingevent"
 metadata_language <- "en"
 data_language <- "en"
-data_license <- "https://creativecommons.org/publicdomain/zero/1.0/deed.en"
-metadata_license <- "CC0 1.0"
+data_license <- "https://creativecommons.org/publicdomain/zero/1.0/"
+metadata_license <- "cc0-1.0"
 creators <- list(   # If info not available: Add: NA_character_ 
   list(
     title = "Jari Vandendriessche",
