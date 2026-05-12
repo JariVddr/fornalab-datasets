@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<eml:eml xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.2" packageId="19f1512f-1f35-4f08-81ce-eb8905c173dc" system="uuid" xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0 https://eml.ecoinformatics.org/eml-2.2.0/eml.xsd">
+<eml:eml xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.2" packageId="193d590d-ac00-4fab-8754-1048b432c1cd" system="uuid" xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0 https://eml.ecoinformatics.org/eml-2.2.0/eml.xsd">
   <dataset>
     <shortName>DIGITAF_FLANDERS</shortName>
     <title>DIGITAF - Agrobiodiversity occurrences in and around tree row bordered cereal fields in Flanders, Belgium</title>
@@ -18,7 +18,6 @@
         <surName>Eeraerts</surName>
       </individualName>
       <organizationName>Forest &amp; Nature Lab, Ghent University; Estación Biológica de Doñana</organizationName>
-      <electronicMailAddress>Maxime.eeraerts@ugent.be</electronicMailAddress>
       <userId directory="https://orcid.org/">0000-0003-2739-9704</userId>
     </creator>
     <creator>
@@ -27,7 +26,6 @@
         <surName>De Frenne</surName>
       </individualName>
       <organizationName>Forest &amp; Nature Lab, Ghent University</organizationName>
-      <electronicMailAddress>pieter.defrenne@ugent.be</electronicMailAddress>
       <userId directory="https://orcid.org/">0000-0002-8613-0943</userId>
     </creator>
     <creator>
@@ -36,7 +34,6 @@
         <surName>De Smedt</surName>
       </individualName>
       <organizationName>Forest &amp; Nature Lab, Ghent University; SPINICORNIS; ARABEL</organizationName>
-      <electronicMailAddress>pallieter.desmedt@ugent.be</electronicMailAddress>
       <userId directory="https://orcid.org/">0000-0002-3073-6751</userId>
     </creator>
     <creator>
@@ -45,7 +42,6 @@
         <surName>Baert</surName>
       </individualName>
       <organizationName>Royal Belgian Institute of Natural Sciences</organizationName>
-      <electronicMailAddress>lbaert@naturalsciences.be</electronicMailAddress>
     </creator>
     <creator>
       <individualName>
@@ -53,7 +49,6 @@
         <surName>De Ketelaere</surName>
       </individualName>
       <organizationName>Aculea, Natuurpunt; Royal Belgian Institute of Natural Sciences (scientific collaborator)</organizationName>
-      <electronicMailAddress>augustijn.de.ketelaere@gmail.com</electronicMailAddress>
       <userId directory="https://orcid.org/">0009-0007-0260-5483</userId>
     </creator>
     <creator>
@@ -62,7 +57,6 @@
         <surName>Dekoninck</surName>
       </individualName>
       <organizationName>Royal Belgian Institute of Natural Sciences</organizationName>
-      <electronicMailAddress>wdekonick@naturalsciences.be</electronicMailAddress>
       <userId directory="https://orcid.org/">0000-0002-7065-7310</userId>
     </creator>
     <creator>
@@ -71,14 +65,12 @@
         <surName>D'Haeseleer</surName>
       </individualName>
       <organizationName>Aculea, Natuurpunt Studie</organizationName>
-      <electronicMailAddress>jens.dhaeseleer@natuurpunt.be</electronicMailAddress>
     </creator>
     <creator>
       <individualName>
         <givenName>Koen</givenName>
         <surName>Lock</surName>
       </individualName>
-      <electronicMailAddress>koen_lock@hotmail.com</electronicMailAddress>
     </creator>
     <creator>
       <individualName>
@@ -86,7 +78,6 @@
         <surName>Van den Bossche</surName>
       </individualName>
       <organizationName>Forest &amp; Nature Lab, Ghent University</organizationName>
-      <electronicMailAddress>astvdnbo.vandenbossche@ugent.be</electronicMailAddress>
     </creator>
     <creator>
       <individualName>
@@ -94,7 +85,6 @@
         <surName>Vandendriessche</surName>
       </individualName>
       <organizationName>Bat Working Group, Natuurpunt</organizationName>
-      <electronicMailAddress>bob.vandendriessche@rlhp.be</electronicMailAddress>
       <userId directory="https://orcid.org/">0009-0009-3802-1820</userId>
     </creator>
     <creator>
@@ -103,14 +93,12 @@
         <surName>Van Keer</surName>
       </individualName>
       <organizationName>ARABEL</organizationName>
-      <electronicMailAddress>johan.van.keer1@gmail.com</electronicMailAddress>
     </creator>
     <creator>
       <individualName>
         <givenName>Marc</givenName>
         <surName>Van Kerckvoorde</surName>
       </individualName>
-      <electronicMailAddress>vankerckvoordemarc@gmail.com</electronicMailAddress>
     </creator>
     <creator>
       <individualName>
@@ -118,7 +106,6 @@
         <surName>Willems</surName>
       </individualName>
       <organizationName>Forest &amp; Nature Lab, Ghent University</organizationName>
-      <electronicMailAddress>luc.willems@ugent.be</electronicMailAddress>
     </creator>
     <creator>
       <individualName>
@@ -135,7 +122,6 @@
         <surName>Verheyen</surName>
       </individualName>
       <organizationName>Forest &amp; Nature Lab, Ghent University</organizationName>
-      <electronicMailAddress>kris.verheyen@ugent.be</electronicMailAddress>
       <userId directory="https://orcid.org/">0000-0002-2067-9108</userId>
     </creator>
     <metadataProvider>
@@ -329,6 +315,7 @@ How?
   <additionalMetadata>
     <metadata>
       <gbif>
+        <bibliography/>
         <hierarchyLevel>dataset</hierarchyLevel>
         <resourceLogoUrl>https://digitaf.eu/wp-content/uploads/2022/10/logoDigitAF_HR.png</resourceLogoUrl>
       </gbif>
