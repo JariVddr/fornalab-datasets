@@ -8,9 +8,9 @@ This repository contains the functionality to standardize several datasets of th
 
 Title (and GitHub directory) | IPT | GBIF
 --- | --- | ---
-[DIGITAF_FLANDERS](https://github.com/inbo/fornalab-datasets/tree/main/datasets/fornalab-digitaf-2023) | [IPT](https://ipt.inbo.be/manage/resource?r=digitaf_flanders) | [GBIF](https://doi.org/10.15468/cm9c76)
-[FORMICA_VEG](https://github.com/inbo/fornalab-datasets/tree/main/datasets/fornalab-formica-wp1-vegetation) | [IPT](https://ipt.inbo.be/resource?r=formica_veg) | [GBIF](https://doi.org/10.15468/be9pwc)
-[FORMICA_LEPIDOPTERA](https://github.com/inbo/fornalab-datasets/tree/main/datasets/fornalab-formica-lepidoptera) | [IPT](https://ipt.inbo.be/resource?r=formica_lepidoptera) | [GBIF](https://doi.org/10.15468/3sckuk)
+[DIGITAF_FLANDERS](https://github.com/inbo/fornalab-datasets/tree/main/datasets/digitaf_flanders) | [IPT](https://ipt.inbo.be/manage/resource?r=digitaf_flanders) | [GBIF](https://doi.org/10.15468/cm9c76)
+[FORMICA_VEG](https://github.com/inbo/fornalab-datasets/tree/main/datasets/formica_veg) | [IPT](https://ipt.inbo.be/resource?r=formica_veg) | [GBIF](https://doi.org/10.15468/be9pwc)
+[FORMICA_LEPIDOPTERA](https://github.com/inbo/fornalab-datasets/tree/main/datasets/formica_lepidoptera) | [IPT](https://ipt.inbo.be/resource?r=formica_lepidoptera) | [GBIF](https://doi.org/10.15468/3sckuk)
 
 ## Repo structure
 
