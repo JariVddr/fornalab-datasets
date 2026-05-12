@@ -257,7 +257,7 @@ creators <- list(   # If info not available: Add: NA_character_
   )
 )
 metadata_provider <- purrr::keep(creators, ~ .x$title %in% c("Jari Vandendriessche"))
-contact <- purrr::keep(creators, ~ .x$title == "Jari Vandendriessche")
+contact <- purrr::keep(creators, ~ .x$title %in% c("Jari Vandendriessche", "Sanne Govaert"))
 keywords <- c("biodiversity", "hedgerows", "agroforestry", "landscape", "beetles", "spiders", "ants", "lepidoptera", "bees", "wasps", "flies", "plants", "birds", "bats")
 begin_date <-  min(my_data$date)
 end_date <- max(my_data$date)
