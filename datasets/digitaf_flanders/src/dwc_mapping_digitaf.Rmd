@@ -45,7 +45,7 @@ library(EML)
 
 ```{r}
 # Define the directory containing the data files
-directory <- here::here("datasets", "fornalab-digitaf-2023", "data")
+directory <- here::here("datasets", "digitaf_flanders", "data")
 
 pitfalls_raw <- read.csv(here::here(directory, "raw", "Obs.Pitfalls.csv"))
 transects_raw <- read.csv(here::here(directory, "raw", "Obs.Transects.csv"))

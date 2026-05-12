@@ -23,7 +23,7 @@ library(EML)
 # Read source data
 
 ```{r}
-directory <- here::here("datasets", "fornalab-formica-lepidoptera", "data")
+directory <- here::here("datasets", "formica_lepidoptera", "data")
 raw_data <- readr::read_csv(here::here(directory, "raw", "Raw moth sampling data_onlyvalues.csv"))
 ```
 

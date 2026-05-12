@@ -26,7 +26,7 @@ library(EML)
 
 ```{r}
 # Define the directory containing the data files
-directory <- here::here("datasets", "fornalab-formica-wp1-vegetation", "data")
+directory <- here::here("datasets", "formica_veg", "data")
 
 # Import different sheets for each vegetation stratum, plot characteristics, and survey info
 raw_data_herb <- read_excel(here::here(directory, "raw", "Vegetation survey_version38.xlsx"), sheet = "Herb")
@@ -510,7 +510,7 @@ EML::write_eml(eml, here::here(dir_export, "eml.xml"))
 
 ```{r copy meta.xml}
   file.copy(
-    here::here("datasets", "fornalab-formica-wp1-vegetation", "extdata", "meta.xml"),
+    here::here("datasets", "formica_veg", "extdata", "meta.xml"),
     here::here(dir_export, "meta.xml")
   )
 ```
