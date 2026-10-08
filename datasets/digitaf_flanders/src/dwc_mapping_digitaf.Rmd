@@ -45,7 +45,7 @@ library(EML)
 
 ```{r}
 # Define the directory containing the data files
-directory <- here::here("datasets", "fornalab-digitaf-2023", "data")
+directory <- here::here("datasets", "digitaf_flanders", "data")
 
 pitfalls_raw <- read.csv(here::here(directory, "raw", "Obs.Pitfalls.csv"))
 transects_raw <- read.csv(here::here(directory, "raw", "Obs.Transects.csv"))
@@ -67,30 +67,30 @@ selected_variables <- c(
 pitfalls <-
   pitfalls_raw |>
   dplyr::mutate(
-    Method = "Pitfall", 
-    Method_txt = "Pitfall", 
-    Sampletime = dplyr::if_else(Trapnr == 1, "Trap1", "Trap2")
+    Method = "pitfall", 
+    Method_txt = "pitfall", 
+    Sampletime = dplyr::if_else(Trapnr == 1, "trap1", "trap2")
   ) |>
   dplyr::select(selected_variables)
 
 transects <-
   transects_raw |>
   dplyr::mutate(
-    Method_txt = "Transect", 
-    Sampletime = dplyr::if_else(Sampletime == 1, "Spring", "September")
+    Method_txt = "transect", 
+    Sampletime = dplyr::if_else(Sampletime == 1, "spring", "september")
   ) |>
   dplyr::select(selected_variables)
 
 quadrats <-
   quadrats_raw |>
-  dplyr::mutate(Method_txt = "Quadrat") |>
+  dplyr::mutate(Method_txt = "quadrat") |>
   dplyr::mutate(Sampletime = "") |>
   dplyr::select(selected_variables)
 
 audiomoth_birds <-
   audiomoth_birds_raw |>
   dplyr::mutate(
-    Method_txt = "AudioMoth",
+    Method_txt = "audiomoth",
     Sampletime = "",
     Number = NA # Only presence-absence data
     ) |>
@@ -99,7 +99,7 @@ audiomoth_birds <-
 audiomoth_bats <-
   audiomoth_bats_raw |>
   dplyr::mutate(
-    Method_txt = "AudioMoth",
+    Method_txt = "audiomoth",
     Sampletime = "",
     Number =  NA # Only presence-absence data
   ) |>
@@ -110,24 +110,17 @@ audiomoth_bats <-
 
 ```{r}
 my_data <- dplyr::bind_rows(pitfalls, transects, quadrats, audiomoth_birds, audiomoth_bats) |>
-  dplyr::rename(
-    "Date" = date,
-    "LAT" = lat,
-    "LON" = lng,
-    "group" = Spec_group,
-    "Amount" = Number
-  ) |>
   dplyr::mutate(
-    TAG = paste(Loc, Type, Sampletime, sep = "_"),
-    field = toupper(Type), # set in capital letters
-    # Use 'event_id' and 'parent_event_id' to create unique event identifiers for plots
-    location_id = paste("DIGITAF_FLANDERS", "LOCATION", Loc, sep = ":"),
-    # plot_id = paste("DIGITAF_FLANDERS", "PLOT", Loc, Type, sep = ":"),
-    event_id = dplyr::if_else(Method_txt %in% c("Pitfall", "Transect"), 
-                              paste("DIGITAF_FLANDERS", "SAMPLE", Loc, Type, Method_txt, Sampletime, sep = ":"),
-                              paste("DIGITAF_FLANDERS", "SAMPLE", Loc, Type, Method_txt, sep = ":"))
+    parentEventID = paste("DIGITAF_FLANDERS", "LOCATION", Loc, sep = ":"),
+    event_id = dplyr::if_else(Method_txt %in% c("pitfall", "transect"),
+      paste("DIGITAF_FLANDERS", "SAMPLE", Loc, Type, Method_txt, Sampletime, sep = ":"),
+      paste("DIGITAF_FLANDERS", "SAMPLE", Loc, Type, Method_txt, sep = ":")
+    )
   )
+<<<<<<< HEAD:datasets/fornalab-digitaf-2023/src/dwc_mapping_digitaf.Rmd
 my_data$occurrenceID <- gsub("_BIODIVERSITY_FLEMISH_TREEROWS", "", my_data$occurrenceID)
+=======
+>>>>>>> da480d34101dbdb2bf2e606f332f75d3b9a64ac3:datasets/digitaf_flanders/src/dwc_mapping_digitaf.Rmd
 my_data
 ```
 
@@ -135,22 +128,26 @@ my_data
 
 ```{r basic metadata}
 short_name <- "DIGITAF_FLANDERS"
+<<<<<<< HEAD:datasets/fornalab-digitaf-2023/src/dwc_mapping_digitaf.Rmd
 title <- "Landscape mitigation effects for improvements of biodiversity levels in tree rows next to cereal fields"
+=======
+title <- "DIGITAF - Agrobiodiversity occurrences in and around tree row bordered cereal fields in Flanders, Belgium"
+>>>>>>> da480d34101dbdb2bf2e606f332f75d3b9a64ac3:datasets/digitaf_flanders/src/dwc_mapping_digitaf.Rmd
 abstract <- c(
-  "DIGITAF_BIODIVERSITY_FLEMISH_TREEROWS is a sampling event dataset published by Ghent University. It contains information on an exhaustive sampling event in 64 Flemish plots across 27 cereal fields. At each field, a plot was established in a bordering tree row (tree), in a treeless field margin (crtl) and in 10 fields we had the permission to sample in the field (crop). Fields were selected along a gradient of landscape composition across the available Flemish palette of landscapes. The dataset includes information on a biodiversity balance sampled as a snapshot with high taxonomic resolution. Mentioned groups were identified by any of our co-authors (unless otherwise indicated) to high taxonomic resolution (generally species level). Methods applied incorporated (i) 2 pitfall traps (14 days, Ø 9cm, d 11cm, autoantifreeze dilution, June) for beetles (Histeridae, Carabidae, Staphylinidae), spiders, ants, isopods, millipedes, centipedes and harvestmen, (ii) a transect walk (50m, 15', May-June & September) along the plot for lepidoptera, bees, wasps, flies and pollinating beetles, (iii) a vegetation quadrat of 10m² (2x5 or 1x10, depending on margin width, May-June) for plants and (iv) AudioMoth deployment between 05:15 CET-10:00 CET, 19:30-22:00 CET and 22:30-02:00 CET (48h, 1' per 15', 0-96 kHz, May-June) for birds and bats. Audiofiles were processed with BTO acoustic pipeline and the BirdNET analyzer with manual verification afterwards. Bat and bird data are presented in presence-absence (under one date, better resolution data can be requested), plant data in cover percentage and all other data in number of individuals caught. A metadata-file with parcel specifications will be published with the Zenodo-records of this dataset and can be requested through our contacts. With the same records, we will also publish the validated activity-based dataset for bats.",
+  "DIGITAF - Agrobiodiversity occurrences in and around tree row bordered cereal fields in Flanders, Belgium is a sampling event dataset published by Ghent University. It contains information on an exhaustive sampling event in 64 Flemish plots across 27 cereal fields. At each field, a plot was established in a bordering tree row (tree), in a treeless field margin (crtl) and in 10 fields we had the permission to sample in the field (crop). Fields were selected along a gradient of landscape composition across the available Flemish palette of landscapes. The dataset includes information on a biodiversity balance sampled as a snapshot with high taxonomic resolution. Mentioned groups were identified by any of our co-authors (unless otherwise indicated) to high taxonomic resolution (generally species level). Methods applied incorporated (i) 2 pitfall traps (14 days, Ø 9cm, d 11cm, autoantifreeze dilution, June) for beetles (Histeridae, Carabidae, Staphylinidae), spiders, ants, isopods, millipedes, centipedes and harvestmen, (ii) a transect walk (50m, 15', May-June & September) along the plot for lepidoptera, bees, wasps, flies and pollinating beetles, (iii) a vegetation quadrat of 10m² (2x5 or 1x10, depending on margin width, May-June) for plants and (iv) AudioMoth deployment between 05:15 CET-10:00 CET, 19:30-22:00 CET and 22:30-02:00 CET (48h, 1' per 15', 0-96 kHz, May-June) for birds and bats. Audiofiles were processed with BTO acoustic pipeline and the BirdNET analyzer with manual verification afterwards. Bat and bird data are presented in presence (under one date, better resolution data can be requested), plant data in cover percentage and all other data in number of individuals caught. A metadata-file with parcel specifications will be published with the Zenodo-records of this dataset and can be requested through our contacts. With the same records, we will also publish the validated activity-based dataset for bats.",
 "We have released this dataset under a Creative Commons waiver. If you have any questions regarding this dataset, don't hesitate to contact us via the contact information provided in the metadata.",
 "This sampling took place in the framework of the DIGItal Tools to help AgroForestry (<a href=\"https://digitaf.eu/\">DigitAF</a>) project (grant	agreement	no. 101059794), co-funded	by	the	European	Commission and the	European	Research	Agency,	within	the	Horizon	Europe	programme. This dataset was published with technical support provided by the Research Institute for Nature and Forest (INBO). We thank Jef Hendrix for verifying some hoverfly specimens.")
 ```
 
 ```{r metadata}
 publisher <- "Ghent University"
-dataset_id = "" # First it's empty (since not yet registered on GBIF)
+dataset_id = "https://doi.org/10.15468/cm9c76"
 update_frequency <- "notPlanned"
 type <- "Samplingevent"
 metadata_language <- "en"
 data_language <- "en"
-data_license <- "https://creativecommons.org/publicdomain/zero/1.0/deed.en"
-metadata_license <- "CC0 1.0"
+data_license <- "https://creativecommons.org/publicdomain/zero/1.0/"
+metadata_license <- "cc0-1.0"
 creators <- list(   # If info not available: Add: NA_character_ 
   list(
     title = "Jari Vandendriessche",
@@ -162,7 +159,6 @@ creators <- list(   # If info not available: Add: NA_character_
   ),
   list(
     title = "Maxime Eeraerts",
-    email = "Maxime.eeraerts@ugent.be",
     organization = "Forest & Nature Lab, Ghent University; Estación Biológica de Doñana", 
     first_name = "Maxime",
     last_name = "Eeraerts",
@@ -170,7 +166,6 @@ creators <- list(   # If info not available: Add: NA_character_
   ),
   list(
     title = "Pieter De Frenne",
-    email = "pieter.defrenne@ugent.be",
     organization = "Forest & Nature Lab, Ghent University",
     first_name = "Pieter",
     last_name = "De Frenne",
@@ -178,7 +173,6 @@ creators <- list(   # If info not available: Add: NA_character_
   ),
   list(
     title = "Pallieter De Smedt",
-    email = "pallieter.desmedt@ugent.be",
     organization = "Forest & Nature Lab, Ghent University; SPINICORNIS; ARABEL", 
     first_name = "Pallieter",
     last_name = "De Smedt",
@@ -186,7 +180,6 @@ creators <- list(   # If info not available: Add: NA_character_
   ),
   list(
     title = "Léon Baert",
-    email = "lbaert@naturalsciences.be",
     organization = "Royal Belgian Institute of Natural Sciences",
     first_name = "Léon",
     last_name = "Baert",
@@ -194,7 +187,6 @@ creators <- list(   # If info not available: Add: NA_character_
   ),
   list(
     title = "Augustijn De Ketelaere",
-    email = "augustijn.de.ketelaere@gmail.com",
     organization = "Aculea, Natuurpunt; Royal Belgian Institute of Natural Sciences (scientific collaborator)", 
     first_name = "Augustijn",
     last_name = "De Ketelaere",
@@ -202,7 +194,6 @@ creators <- list(   # If info not available: Add: NA_character_
   ),
   list(
     title = "Wouter Dekoninck",
-    email = "wdekonick@naturalsciences.be",
     organization = "Royal Belgian Institute of Natural Sciences",
     first_name = "Wouter",
     last_name = "Dekoninck",
@@ -210,12 +201,12 @@ creators <- list(   # If info not available: Add: NA_character_
   ),
   list(
     title = "Jens D'Haeseleer",
-    email = "jens.dhaeseleer@natuurpunt.be",
     organization = "Aculea, Natuurpunt Studie",
     first_name = "Jens",
     last_name = "D'Haeseleer",
     orcid = NA_character_
   ),
+<<<<<<< HEAD:datasets/fornalab-digitaf-2023/src/dwc_mapping_digitaf.Rmd
   #list(
   #  title = "Jef Hendrix",
   #  email = "jef.hendrix@natuurpunt.be",
@@ -224,9 +215,10 @@ creators <- list(   # If info not available: Add: NA_character_
   #  last_name = "Hendrix",
   #  orcid = NA_character_
   #),
+=======
+>>>>>>> da480d34101dbdb2bf2e606f332f75d3b9a64ac3:datasets/digitaf_flanders/src/dwc_mapping_digitaf.Rmd
   list(
     title = "Koen Lock",
-    email = "koen_lock@hotmail.com",
     organization = NA_character_,
     first_name = "Koen",
     last_name = "Lock",
@@ -234,7 +226,6 @@ creators <- list(   # If info not available: Add: NA_character_
   ),
   list(
     title = "Astrid Van den Bossche",
-    email = "astvdnbo.vandenbossche@ugent.be",
     organization = "Forest & Nature Lab, Ghent University",
     first_name = "Astrid",
     last_name = "Van den Bossche",
@@ -242,7 +233,6 @@ creators <- list(   # If info not available: Add: NA_character_
   ),
   list(
     title = "Bob Vandendriessche",
-    email = "bob.vandendriessche@rlhp.be",
     organization = "Bat Working Group, Natuurpunt",
     first_name = "Bob",
     last_name = "Vandendriessche",
@@ -250,7 +240,6 @@ creators <- list(   # If info not available: Add: NA_character_
   ),
   list(
     title = "Johan Van Keer",
-    email = "johan.van.keer1@gmail.com",
     organization = "ARABEL",
     first_name = "Johan",
     last_name = "Van Keer",
@@ -258,7 +247,6 @@ creators <- list(   # If info not available: Add: NA_character_
   ),
   list(
     title = "Marc Van Kerckvoorde",
-    email = "vankerckvoordemarc@gmail.com",
     organization = NA_character_,
     first_name = "Marc",
     last_name = "Van Kerckvoorde",
@@ -266,7 +254,6 @@ creators <- list(   # If info not available: Add: NA_character_
   ),
   list(
     title = "Luc Willems",
-    email = "luc.willems@ugent.be",
     organization = "Forest & Nature Lab, Ghent University",
     first_name = "Luc",
     last_name = "Willems",
@@ -282,7 +269,6 @@ creators <- list(   # If info not available: Add: NA_character_
   ),
   list(
     title = "Kris Verheyen",
-    email = "kris.verheyen@ugent.be",
     organization = "Forest & Nature Lab, Ghent University",
     first_name = "Kris",
     last_name = "Verheyen",
@@ -290,10 +276,10 @@ creators <- list(   # If info not available: Add: NA_character_
   )
 )
 metadata_provider <- purrr::keep(creators, ~ .x$title %in% c("Jari Vandendriessche"))
-contact <- purrr::keep(creators, ~ .x$title == "Jari Vandendriessche")
+contact <- purrr::keep(creators, ~ .x$title %in% c("Jari Vandendriessche", "Sanne Govaert"))
 keywords <- c("biodiversity", "hedgerows", "agroforestry", "landscape", "beetles", "spiders", "ants", "lepidoptera", "bees", "wasps", "flies", "plants", "birds", "bats")
-begin_date <-  min(my_data$Date)
-end_date <- max(my_data$Date)
+begin_date <-  min(my_data$date)
+end_date <- max(my_data$date)
 geographic_description <- "Flemish cereal fields"
 
 taxonomic_coverage <-
@@ -374,7 +360,7 @@ How?
 
 27 cereal fields were selected along a gradient of landscape complexity throughout Flanders, each bordered with a hedgerow (tree row). We used the proxy of a tree row for agroforestry since mature agroforestry fields are rare."
 
-logo<- "https://digitaf.eu/wp-content/uploads/2022/10/logoDigitAF_HR.png"
+logo <- "https://digitaf.eu/wp-content/uploads/2022/10/logoDigitAF_HR.png"
 ```
 
 # Darwin core transformation
@@ -382,6 +368,7 @@ logo<- "https://digitaf.eu/wp-content/uploads/2022/10/logoDigitAF_HR.png"
 ## Darwin core event
 
 ```{r event}
+<<<<<<< HEAD:datasets/fornalab-digitaf-2023/src/dwc_mapping_digitaf.Rmd
 event_location <- my_data |>
   dplyr::filter(!is.na(Spec)) |> 
   dplyr::mutate(
@@ -399,10 +386,14 @@ event_location <- my_data |>
 #    samplingProtocol = NA_character_,
 #    samplingEffort = NA_character_)
 event_sample <- my_data |>
+=======
+event <- my_data |>
+>>>>>>> da480d34101dbdb2bf2e606f332f75d3b9a64ac3:datasets/digitaf_flanders/src/dwc_mapping_digitaf.Rmd
   dplyr::filter(!is.na(Spec)) |> 
   dplyr::mutate(
     .keep = "none",
     eventID = event_id,
+<<<<<<< HEAD:datasets/fornalab-digitaf-2023/src/dwc_mapping_digitaf.Rmd
     parentEventID = location_id,
     samplingProtocol = tolower(Method),
     samplingEffort = dplyr::case_when(
@@ -421,20 +412,47 @@ event <- dplyr::bind_rows(
   #event_plot,
   event_sample) |>
   dplyr::mutate(
+=======
+>>>>>>> da480d34101dbdb2bf2e606f332f75d3b9a64ac3:datasets/digitaf_flanders/src/dwc_mapping_digitaf.Rmd
     type = "Event",
     language = data_language,
     license = data_license,
     rightsHolder = publisher,
     datasetID = dataset_id,
-    institutionCode = "UGent",
+    institutionCode = "UGENT",
     datasetName = title,
+    parentEventID = .data$parentEventID,
+    eventDate = .data$date,
     habitat = "agricultural landscape",
+    samplingProtocol = tolower(Method),
+    samplingEffort = dplyr::recode_values(
+      .data$samplingProtocol,
+      "pitfall" ~ "1 trap for 14 days, Ø 9 cm, depth 11 cm, antifreeze",
+      "15' transect" ~ "15 min over 50 m",
+      "10m² quadrat" ~ "10 m² quadrat",
+      "audiomoth recording" ~ 
+        "48h; 05:15–10:00, 19:30–22:00, 22:30–02:00; 1 min/15 min; 0–96 kHz",
+      default = NA_character_),
     country = "Belgium",
+    continent = "Europe",
+    decimalLatitude = .data$lat, 
+    decimalLongitude = .data$lng,
     geodeticDatum = "EPSG:4326",
     coordinateUncertaintyInMeters = 5
+<<<<<<< HEAD:datasets/fornalab-digitaf-2023/src/dwc_mapping_digitaf.Rmd
   ) |>
   dplyr::distinct() %>%
   filter(!is.na(parentEventID))
+=======
+    ) |>
+  dplyr::distinct() %>%
+  dplyr::select(
+    eventID, type, language, license, rightsHolder, datasetID, institutionCode,
+    datasetName, parentEventID, eventDate, habitat, samplingProtocol, samplingEffort,
+    country, continent, decimalLatitude, decimalLongitude, geodeticDatum,
+    coordinateUncertaintyInMeters
+  )
+>>>>>>> da480d34101dbdb2bf2e606f332f75d3b9a64ac3:datasets/digitaf_flanders/src/dwc_mapping_digitaf.Rmd
 ```
 
 ## Occurrence extension
@@ -445,48 +463,61 @@ occurrence <-
   dplyr::filter(!is.na(Spec)) |> 
   dplyr::mutate(
     .keep = "none",
-    language = data_language,
+    eventID = .data$event_id, 
     type = "Event",
+    language = data_language,
     license = data_license, 
     rightsHolder = publisher,
     datasetID = dataset_id,
     datasetName = title,
-    identifiedBy = .data$Det,
-    lifeStage = dplyr::recode_values(
-      .data$Stage,
-      "Ad" ~ "adult",
-      "Juv" ~ "juvenile"
-      ),
+    basisOfRecord = dplyr::recode_values(
+      .data$Spec_group,
+      "birds" ~ "MachineObservation",
+      "bats" ~ "MachineObservation",
+      "plants" ~ "HumanObservation",
+      "lepidoptera" ~ "HumanObservation",
+      default = "materialSample"
+    ),
+    occurrenceID = .data$occurrenceID, 
+    organismQuantity = .data$Number, 
+    organismQuantityType = dplyr::recode_values(
+      .data$Spec_group,
+      "plants" ~ "percentage cover",
+      default = "individuals"
+    ),
+    organismQuantityType = dplyr::recode_values(
+      .data$Spec_group,
+      "birds" ~ NA_character_,
+      "bats" ~ NA_character_,
+      default = .data$organismQuantityType
+    ),
     sex = dplyr::recode_values(
       .data$Sex,
       "M" ~ "male",
       "F" ~ "female"
       ),
-    basisOfRecord = dplyr::if_else(
-      .data$group %in% c("birds", "bats"),
-      "MachineObservation",
-      dplyr::if_else(
-        .data$group %in% c("plants", "lepidoptera"),
-        "HumanObservation",
-        "materialSample"
-      )
-    ),
-    occurrenceID = .data$occurrenceID, 
-    organismQuantity = .data$Amount, 
-    organismQuantityType = dplyr::if_else(
-      .data$group == "plants", "percentage cover", "individuals"
-      ),
-    organismQuantityType = dplyr::if_else(
-      .data$group %in% c("birds", "bats"), 
-      NA_character_,
-      organismQuantityType
+    lifeStage = dplyr::recode_values(
+      .data$Stage,
+      "Ad" ~ "adult",
+      "Juv" ~ "juvenile"
       ),
     occurrenceStatus = "present",
-    eventID = .data$event_id, 
+    identifiedBy = .data$Det,
+    identificationVerificationStatus = "verified by expert",
     scientificName = .data$Spec,
-    kingdom = dplyr::if_else(.data$group == "plants", "Plantae", "Animalia"), 
+    kingdom = dplyr::recode_values(
+      .data$Spec_group,
+      "plants" ~ "Plantae",
+      default = "Animalia"
+    ),
     taxonRank = "species"
-  )
+  ) |>
+  dplyr::select(
+    eventID, type, language, license, rightsHolder, datasetID, datasetName,
+    basisOfRecord, occurrenceID, organismQuantity, organismQuantityType, sex,
+    lifeStage, occurrenceStatus, identifiedBy, identificationVerificationStatus,
+    scientificName, kingdom, taxonRank
+    )
 ```
 
 # Data quality check
@@ -511,12 +542,6 @@ is.numeric(occurrence$organismQuantity)
 ```{r}
 length(unique(event$eventID)) == nrow(event)
 length(unique(occurrence$occurrenceID)) == nrow(occurrence)
-
-length(unique(occurrence$eventID))
-unique(occurrence$eventID)
-
-occurrence
-event
 ```
 
 ## Check species names with GBIF backbone

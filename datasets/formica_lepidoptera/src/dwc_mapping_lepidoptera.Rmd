@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = TRUE)
 Load libraries:
 
 ```{r message = FALSE}
-library(readxl)
+library(readr)
 library(dplyr)
 library(here)
 library(digest)        
@@ -23,8 +23,8 @@ library(EML)
 # Read source data
 
 ```{r}
-directory <- here::here("datasets", "fornalab-formica-lepidoptera", "data")
-raw_data <- read_excel(here::here(directory, "raw", "Raw moth sampling data_onlyvalues.xlsx"), sheet = "Sheet1")
+directory <- here::here("datasets", "formica_lepidoptera", "data")
+raw_data <- readr::read_csv(here::here(directory, "raw", "Raw moth sampling data_onlyvalues.csv"))
 ```
 
 # Provide metadata
@@ -146,6 +146,7 @@ event <-
     decimalLongitude = .data$LON,
     geodeticDatum = "EPSG:4326",
     coordinateUncertaintyInMeters = 30,
+    verbatimCoordinateSystem = "WGS84",
     eventRemarks = .data$`Remarks (Wind, rain, moon, cloudiness)`
   ) %>% 
   dplyr::distinct()
@@ -168,6 +169,7 @@ occurrence <-
     organismQuantityType = "individuals",
     occurrenceStatus = "present",
     eventID = .data$event_id, 
+    identificationVerificationStatus = "validated",
     scientificName = .data$`Species (Scientific name)`,
     kingdom = "Animalia",
     taxonRank = "species"
