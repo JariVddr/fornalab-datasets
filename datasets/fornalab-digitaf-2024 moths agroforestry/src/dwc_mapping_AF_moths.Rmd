@@ -151,94 +151,190 @@ metadata_language <- "en"
 data_language <- "en"
 data_license <- "https://creativecommons.org/publicdomain/zero/1.0/deed.en"
 metadata_license <- "CC0 1.0"
-creators <- list(   # If info not available: Add: NA_character_ 
+creators <- list(
   list(
     title = "Jari Vandendriessche",
-    email = "jari.vandendriessche@ugent.be",
-    organization = "Forest & Nature Lab, Ghent University",
+    email = "Jari.vandendriessche@ugent.be",
+    organization = "Forest & Nature Lab, Department of Environment, Ghent University",
     first_name = "Jari",
     last_name = "Vandendriessche",
     orcid = "0000-0003-3845-6655"
   ),
   list(
     title = "Maxime Eeraerts",
-    email = "Maxime.eeraerts@ugent.be",
-    organization = "Forest & Nature Lab, Ghent University; Estación Biológica de Doñana", 
+    email = "Maxime.Eeraerts@UGent.be",
+    organization = "Forest & Nature Lab, Ghent University; Estación Biológica de Doñana (EBD-CSIC)",
     first_name = "Maxime",
     last_name = "Eeraerts",
     orcid = "0000-0003-2739-9704"
   ),
   list(
     title = "Pieter De Frenne",
-    email = "pieter.defrenne@ugent.be",
-    organization = "Forest & Nature Lab, Ghent University",
+    email = "Pieter.DeFrenne@UGent.be",
+    organization = "Forest & Nature Lab, Department of Environment, Ghent University",
     first_name = "Pieter",
     last_name = "De Frenne",
     orcid = "0000-0002-8613-0943"
   ),
   list(
     title = "Pallieter De Smedt",
-    email = "pallieter.desmedt@ugent.be",
-    organization = "Forest & Nature Lab, Ghent University; SPINICORNIS; ARABEL", 
+    email = "Pallieter.DeSmedt@UGent.be",
+    organization = "Forest & Nature Lab, Ghent University; SPINICORNIS; ARABEL",
     first_name = "Pallieter",
     last_name = "De Smedt",
     orcid = "0000-0002-3073-6751"
   ),
   list(
-    title = "Léon Baert",
-    email = "lbaert@naturalsciences.be",
-    organization = "Royal Belgian Institute of Natural Sciences",
-    first_name = "Léon",
-    last_name = "Baert",
+    title = "Javier Arbea",
+    email = "jarbeapo@gmail.com",
+    organization = NA_character_,
+    first_name = "Javier",
+    last_name = "Arbea",
+    orcid = NA_character_
+  ),
+  list(
+    title = "Dominik Arend",
+    email = "dominik.arend@biologie.uni-freiburg.de",
+    organization = "University of Freiburg, Faculty of Biology, Geobotany",
+    first_name = "Dominik",
+    last_name = "Arend",
+    orcid = "0000-0001-9069-8825"
+  ),
+  list(
+    title = "Guido Bonamie",
+    email = "guido.bonamie@telenet.be",
+    organization = "Atalanta vzw",
+    first_name = "Guido",
+    last_name = "Bonamie",
+    orcid = NA_character_
+  ),
+  list(
+    title = "Yolan Bosteels",
+    email = "yolan.bosteels@UGent.be",
+    organization = "Independent researcher, Ghent",
+    first_name = "Yolan",
+    last_name = "Bosteels",
+    orcid = NA_character_
+  ),
+  list(
+    title = "Finn Brunßen",
+    email = "finn.brunssen@mailbox.org",
+    organization = "Department of Evolutionary Biology and Ecology, Institute of Biology I, University of Freiburg",
+    first_name = "Finn",
+    last_name = "Brunßen",
+    orcid = "0009-0005-4114-9113"
+  ),
+  list(
+    title = "André Braeckman",
+    email = "bonanza0072@gmail.com",
+    organization = "Atalanta vzw",
+    first_name = "André",
+    last_name = "Braeckman",
+    orcid = NA_character_
+  ),
+  list(
+    title = "David Cabanillas",
+    email = "cabanillas.entomologia@gmail.com",
+    organization = "Instituto Murciano de Investigación y Desarrollo Agrario y Medioambiental",
+    first_name = "David",
+    last_name = "Cabanillas",
+    orcid = "0000-0002-4947-4958"
+  ),
+  list(
+    title = "Tim De Blanck",
+    email = "tim_de_blanck@hotmail.com",
+    organization = NA_character_,
+    first_name = "Tim",
+    last_name = "De Blanck",
     orcid = NA_character_
   ),
   list(
     title = "Augustijn De Ketelaere",
     email = "augustijn.de.ketelaere@gmail.com",
-    organization = "Aculea, Natuurpunt; Royal Belgian Institute of Natural Sciences (scientific collaborator)", 
+    organization = "Aculea, Natuurpunt; Royal Belgian Institute of Natural Sciences (scientific collaborator)",
     first_name = "Augustijn",
     last_name = "De Ketelaere",
     orcid = "0009-0007-0260-5483"
   ),
   list(
     title = "Wouter Dekoninck",
-    email = "wdekonick@naturalsciences.be",
+    email = "wdekoninck@naturalsciences.be",
     organization = "Royal Belgian Institute of Natural Sciences",
     first_name = "Wouter",
     last_name = "Dekoninck",
     orcid = "0000-0002-7065-7310"
   ),
   list(
-    title = "Jens D'Haeseleer",
-    email = "jens.dhaeseleer@natuurpunt.be",
-    organization = "Aculea, Natuurpunt Studie",
-    first_name = "Jens",
-    last_name = "D'Haeseleer",
-    orcid = NA_character_
-  ),
-  #list(
-  #  title = "Jef Hendrix",
-  #  email = "jef.hendrix@natuurpunt.be",
-  #  organization = "Natuurpunt",
-  #  first_name = "Jef",
-  #  last_name = "Hendrix",
-  #  orcid = NA_character_
-  #),
-  list(
-    title = "Koen Lock",
-    email = "koen_lock@hotmail.com",
+    title = "Marc Delbol",
+    email = "marc.delbol@gmail.com",
     organization = NA_character_,
-    first_name = "Koen",
-    last_name = "Lock",
+    first_name = "Marc",
+    last_name = "Delbol",
     orcid = NA_character_
   ),
   list(
-    title = "Astrid Van den Bossche",
-    email = "astvdnbo.vandenbossche@ugent.be",
-    organization = "Forest & Nature Lab, Ghent University",
-    first_name = "Astrid",
-    last_name = "Van den Bossche",
+    title = "Purificación Gamarra",
+    email = "p.gamarra@lasallecampus.es",
+    organization = "Centro Superior de Estudios Universitarios La Salle (UAM)",
+    first_name = "Purificación",
+    last_name = "Gamarra",
     orcid = NA_character_
+  ),
+  list(
+    title = "José D. Gilgado",
+    email = "josedomingo.gilgado@uah.es",
+    organization = "Universidad de Alcalá, Facultad de Ciencias, Departamento de Ciencias de la Vida",
+    first_name = "José D.",
+    last_name = "Gilgado",
+    orcid = "0000-0003-0484-4000"
+  ),
+  list(
+    title = "Jef Hendrix",
+    email = "jef.hendrix@natuurpunt.be",
+    organization = "Aculea, Natuurpunt Studie",
+    first_name = "Jef",
+    last_name = "Hendrix",
+    orcid = NA_character_
+  ),
+  list(
+    title = "Raimundo Outerolo",
+    email = "outere@ucm.es",
+    organization = "Centro Superior de Estudios Universitarios La Salle (UAM)",
+    first_name = "Raimundo",
+    last_name = "Outerolo",
+    orcid = NA_character_
+  ),
+  list(
+    title = "Carlos E. Prieto",
+    email = "carlos.prieto@ehu.eus",
+    organization = "University of the Basque Country (EHU), Faculty of Science and Technology",
+    first_name = "Carlos E.",
+    last_name = "Prieto",
+    orcid = "0000-0003-2064-4842"
+  ),
+  list(
+    title = "Artur Serrano",
+    email = "arserrano@ciencias.ulisboa.pt",
+    organization = NA_character_,
+    first_name = "Artur",
+    last_name = "Serrano",
+    orcid = NA_character_
+  ),
+  list(
+    title = "Jan Šipoš",
+    email = "jan.sipos@mendelu.cz",
+    organization = "Department of Zoology, Fisheries, and Hydrobiology, Faculty of AgriSciences, Mendel University in Brno",
+    first_name = "Jan",
+    last_name = "Šipoš",
+    orcid = "0000-0001-7814-7561"
+  ),
+  list(
+    title = "Dominik Stočes",
+    email = "dominik.stoces@mendelu.cz",
+    organization = "Department of Zoology, Fisheries, and Hydrobiology, Faculty of AgriSciences, Mendel University in Brno",
+    first_name = "Dominik",
+    last_name = "Stočes",
+    orcid = "0000-0002-1867-5327"
   ),
   list(
     title = "Bob Vandendriessche",
@@ -257,6 +353,14 @@ creators <- list(   # If info not available: Add: NA_character_
     orcid = NA_character_
   ),
   list(
+    title = "Frank Van De Meutter",
+    email = "frank.vandemeutter@inbo.be",
+    organization = "Research Institute for Nature and Forest (INBO)",
+    first_name = "Frank",
+    last_name = "Van De Meutter",
+    orcid = NA_character_
+  ),
+  list(
     title = "Marc Van Kerckvoorde",
     email = "vankerckvoordemarc@gmail.com",
     organization = NA_character_,
@@ -265,25 +369,105 @@ creators <- list(   # If info not available: Add: NA_character_
     orcid = NA_character_
   ),
   list(
+    title = "Marie Vymazalová",
+    email = "Meri@seznam.cz",
+    organization = "Department of Landscape Ecology, Landscape Research Institute, Brno",
+    first_name = "Marie",
+    last_name = "Vymazalová",
+    orcid = "0000-0002-8842-9156"
+  ),
+  list(
     title = "Luc Willems",
-    email = "luc.willems@ugent.be",
-    organization = "Forest & Nature Lab, Ghent University",
+    email = "L.Willems@UGent.be",
+    organization = "Forest & Nature Lab, Department of Environment, Ghent University",
     first_name = "Luc",
     last_name = "Willems",
     orcid = NA_character_
   ),
   list(
-    title = "Sanne Govaert",
-    email = "sanne.govaert@ugent.be",
-    organization = "Research Institute for Nature and Forest",
-    first_name = "Sanne",
-    last_name = "Govaert",
-    orcid = "0000-0002-8939-1305"
+    title = "Paul J. Burgess",
+    email = "p.burgess@cranfield.ac.uk",
+    organization = "School of Water, Energy and Environment, Cranfield University",
+    first_name = "Paul J.",
+    last_name = "Burgess",
+    orcid = NA_character_
+  ),
+  list(
+    title = "Christian Dupraz",
+    email = "christian.dupraz@inrae.fr",
+    organization = "ABSys, Univ Montpellier, CIHEAM-IAMM, CIRAD, INRAE, Institut Agro",
+    first_name = "Christian",
+    last_name = "Dupraz",
+    orcid = "0000-0002-6638-8306"
+  ),
+  list(
+    title = "Marie Gosme",
+    email = "marie.gosme@inrae.fr",
+    organization = "ABSys, Univ Montpellier, CIHEAM-IAMM, CIRAD, INRAE, Institut Agro",
+    first_name = "Marie",
+    last_name = "Gosme",
+    orcid = "0000-0003-1848-9230"
+  ),
+  list(
+    title = "Jakub Houska",
+    email = "jakub.houska@vukoz.cz",
+    organization = "Czech University of Life Sciences Prague (CZU)",
+    first_name = "Jakub",
+    last_name = "Houska",
+    orcid = NA_character_
+  ),
+  list(
+    title = "Bohdan Lojka",
+    email = "Lojka@ftz.czu.cz",
+    organization = "Czech University of Life Sciences Prague (CZU)",
+    first_name = "Bohdan",
+    last_name = "Lojka",
+    orcid = NA_character_
+  ),
+  list(
+    title = "João Palma",
+    email = "joaopalma@mvarc.eu",
+    organization = "Moinhos de Vento Agroecology Research Centre",
+    first_name = "João",
+    last_name = "Palma",
+    orcid = NA_character_
+  ),
+  list(
+    title = "Paul Pardon",
+    email = "paul.pardon@ilvo.vlaanderen.be",
+    organization = "Flanders Research Institute for Agriculture, Fisheries and Food (ILVO)",
+    first_name = "Paul",
+    last_name = "Pardon",
+    orcid = "0000-0002-2836-9198"
+  ),
+  list(
+    title = "Jo Smith",
+    email = "josmith@mvarc.eu",
+    organization = "Moinhos de Vento Agroecology Research Centre",
+    first_name = "Jo",
+    last_name = "Smith",
+    orcid = "0000-0001-8761-8556"
+  ),
+  list(
+    title = "Magdaléna Vaňková",
+    email = "vankovaa.m@gmail.com",
+    organization = "Czech University of Life Sciences Prague (CZU)",
+    first_name = "Magdaléna",
+    last_name = "Vaňková",
+    orcid = NA_character_
+  ),
+  list(
+    title = "Giulio Gardini",
+    email = "giulioamedeogardini@gmail.com",
+    organization = "Instituto di Zoologia del'Università di Genova, Italia",
+    first_name = "Giulio",
+    last_name = "Gardini",
+    orcid = NA_character_
   ),
   list(
     title = "Kris Verheyen",
-    email = "kris.verheyen@ugent.be",
-    organization = "Forest & Nature Lab, Ghent University",
+    email = "Kris.Verheyen@UGent.be",
+    organization = "Forest & Nature Lab, Department of Environment, Ghent University",
     first_name = "Kris",
     last_name = "Verheyen",
     orcid = "0000-0002-2067-9108"
